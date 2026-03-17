@@ -53,41 +53,6 @@ body::before { content: ''; position: fixed; inset: 0; background-image: linear-
 .market-status.open { color: var(--green); } .market-status.closed { color: var(--red); } .market-status.pre { color: var(--gold); }
 .market-countdown { font-size: 7px; color: var(--muted); margin-top: 1px; }
 
-/* TABS */
-.tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
-.tab-btn { background: var(--panel2); border: 1px solid var(--border2); border-radius: 8px; padding: 7px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); cursor: pointer; letter-spacing: 0.06em; transition: all 0.2s; white-space: nowrap; }
-.tab-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(240,192,64,0.07); }
-.tab-btn:hover { border-color: var(--muted); color: var(--text); }
-
-/* PRICE GRID */
-.price-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; margin-bottom: 12px; }
-@media (max-width: 500px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.price-card { background: var(--panel); border: 1px solid var(--border2); border-radius: 10px; padding: 12px; position: relative; overflow: hidden; transition: border-color 0.2s; animation: fadeUp 0.3s ease both; }
-.price-card:hover { border-color: var(--border); }
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-.price-card-tag { font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; font-weight: 700; display: inline-block; margin-bottom: 6px; }
-.tag-crypto  { background: rgba(157,122,255,0.12); color: var(--purple); border: 1px solid rgba(157,122,255,0.2); }
-.tag-stock   { background: rgba(77,166,255,0.12);  color: var(--blue);   border: 1px solid rgba(77,166,255,0.2); }
-.tag-metal   { background: rgba(240,192,64,0.12);  color: var(--gold);   border: 1px solid rgba(240,192,64,0.2); }
-.tag-energy  { background: rgba(255,77,109,0.10);  color: var(--red);    border: 1px solid rgba(255,77,109,0.2); }
-.tag-commodity { background: rgba(255,140,66,0.12); color: var(--orange); border: 1px solid rgba(255,140,66,0.2); }
-.tag-index   { background: rgba(0,229,160,0.12);   color: var(--green);  border: 1px solid rgba(0,229,160,0.2); }
-.tag-fx      { background: rgba(85,85,112,0.2);    color: var(--muted);  border: 1px solid var(--border2); }
-.tag-defense { background: rgba(255,77,109,0.10);  color: var(--red);    border: 1px solid rgba(255,77,109,0.2); }
-
-.price-card-name { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.price-card-ticker { font-size: 9px; color: var(--muted); margin-bottom: 8px; }
-.price-card-price { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.02em; color: var(--text); line-height: 1; margin-bottom: 4px; }
-.price-card-change { font-size: 10px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-.change-up { color: var(--green); } .change-down { color: var(--red); } .change-flat { color: var(--muted); }
-.price-card-extra { font-size: 8px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
-.price-loading { color: var(--muted); font-size: 10px; display: flex; align-items: center; gap: 6px; margin-top: 8px; }
-.mini-spin { width: 10px; height: 10px; border: 1px solid var(--border2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
 /* STATUS BAR */
 .status-bar { display: flex; align-items: center; justify-content: space-between; font-size: 9px; color: var(--muted); margin-bottom: 8px; flex-wrap: wrap; gap: 6px; }
 .status-indicator { display: flex; align-items: center; gap: 5px; }
@@ -97,17 +62,73 @@ body::before { content: ''; position: fixed; inset: 0; background-image: linear-
 .status-dot.error { background: var(--red); }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-.error-note { background: rgba(255,77,109,0.06); border: 1px solid rgba(255,77,109,0.15); border-radius: 6px; padding: 6px 10px; font-size: 9px; color: var(--red); margin-bottom: 8px; display: none; }
+/* TABS */
+.tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.tab-btn { background: var(--panel2); border: 1px solid var(--border2); border-radius: 8px; padding: 7px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); cursor: pointer; letter-spacing: 0.05em; transition: all 0.2s; white-space: nowrap; }
+.tab-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(240,192,64,0.07); }
+.tab-btn:hover { border-color: var(--muted); color: var(--text); }
+
+/* PRICE GRID */
+.price-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; margin-bottom: 12px; }
+@media (max-width: 500px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.price-card { background: var(--panel); border: 1px solid var(--border2); border-radius: 10px; padding: 11px; position: relative; overflow: hidden; animation: fadeUp 0.3s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.price-card-tag { font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; font-weight: 700; display: inline-block; margin-bottom: 5px; }
+.tag-crypto   { background: rgba(157,122,255,0.12); color: var(--purple); border: 1px solid rgba(157,122,255,0.2); }
+.tag-stock    { background: rgba(77,166,255,0.12);  color: var(--blue);   border: 1px solid rgba(77,166,255,0.2); }
+.tag-metal    { background: rgba(240,192,64,0.12);  color: var(--gold);   border: 1px solid rgba(240,192,64,0.2); }
+.tag-energy   { background: rgba(255,77,109,0.10);  color: var(--red);    border: 1px solid rgba(255,77,109,0.2); }
+.tag-commodity{ background: rgba(255,140,66,0.12);  color: var(--orange); border: 1px solid rgba(255,140,66,0.2); }
+.tag-index    { background: rgba(0,229,160,0.12);   color: var(--green);  border: 1px solid rgba(0,229,160,0.2); }
+.tag-fx       { background: rgba(85,85,112,0.2);    color: var(--muted);  border: 1px solid var(--border2); }
+.tag-defense  { background: rgba(255,77,109,0.10);  color: var(--red);    border: 1px solid rgba(255,77,109,0.2); }
+
+.price-card-name { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.price-card-ticker { font-size: 9px; color: var(--muted); margin-bottom: 7px; }
+.price-card-price { font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 0.02em; color: var(--text); line-height: 1; margin-bottom: 3px; }
+.price-card-change { font-size: 10px; font-weight: 700; }
+.change-up { color: var(--green); } .change-down { color: var(--red); } .change-flat { color: var(--muted); }
+.price-card-extra { font-size: 8px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+.price-loading { color: var(--muted); font-size: 10px; display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+.mini-spin { width: 10px; height: 10px; border: 1px solid var(--border2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* POSITIONS GRID */
+.pos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; margin-bottom: 12px; }
+@media (max-width: 500px) { .pos-grid { grid-template-columns: 1fr; } }
+
+.pos-card { background: var(--panel); border: 1px solid var(--border2); border-radius: 12px; padding: 14px; animation: fadeUp 0.3s ease both; }
+.pos-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+.pos-card-left { flex: 1; }
+.pos-card-name { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); }
+.pos-card-ticker { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.pos-card-price { font-size: 11px; color: var(--blue); margin-top: 3px; }
+.pos-direction { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 5px; flex-shrink: 0; }
+.dir-long  { background: rgba(0,229,160,0.10); color: var(--green); border: 1px solid rgba(0,229,160,0.25); }
+.dir-short { background: rgba(255,77,109,0.10); color: var(--red);   border: 1px solid rgba(255,77,109,0.25); }
+.pos-levels { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+.pos-level { background: var(--panel2); border-radius: 6px; padding: 6px 8px; }
+.pos-level-label { font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.pos-level-val { font-size: 12px; font-weight: 700; }
+.entry-val { color: var(--blue); } .tp-val { color: var(--green); } .sl-val { color: var(--red); }
+.pos-rr { font-size: 9px; color: var(--gold); margin-bottom: 6px; }
+.pos-note { font-size: 10px; color: var(--muted); line-height: 1.5; }
+.pos-type-badge { display: inline-block; font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; margin-bottom: 8px; background: rgba(85,85,112,0.15); color: var(--muted); border: 1px solid var(--border2); }
+
+.loading-full { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; gap: 12px; }
+.spinner { width: 28px; height: 28px; border: 2px solid var(--border2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.spinner-text { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- TOPBAR -->
   <div class="topbar">
     <div>
       <div class="brand-name">MARKET INTEL</div>
-      <div class="brand-sub">Prețuri Live · Date Reale · Actualizat la fiecare Refresh</div>
+      <div class="brand-sub">Prețuri Live · Poziții Bazate pe Prețuri Reale</div>
     </div>
     <div class="topbar-right">
       <div>
@@ -118,12 +139,10 @@ body::before { content: ''; position: fixed; inset: 0; background-image: linear-
     </div>
   </div>
 
-  <!-- DISCLAIMER -->
   <div class="disclaimer">
-    <strong>⚠ DISCLAIMER:</strong> Date live de piață cu întârziere de până la 15 min pentru acțiuni. Nu constituie sfat financiar. Investițiile implică riscuri. <strong>Deciziile îți aparțin integral.</strong>
+    <strong>⚠ DISCLAIMER:</strong> Date live cu delay 15 min pentru acțiuni. Nu constituie sfat financiar. Nivelurile Entry/TP/SL sunt orientative, calculate automat față de prețul curent. <strong>Deciziile îți aparțin integral.</strong>
   </div>
 
-  <!-- NYSE COUNTDOWN -->
   <div class="nyse-alert">
     <div>
       <div class="nyse-label">⏰ Deschidere NYSE · New York</div>
@@ -137,10 +156,8 @@ body::before { content: ''; position: fixed; inset: 0; background-image: linear-
     </div>
   </div>
 
-  <!-- MARKETS -->
   <div class="market-banner" id="marketBanner"></div>
 
-  <!-- STATUS BAR -->
   <div class="status-bar">
     <div class="status-indicator">
       <div class="status-dot loading" id="statusDot"></div>
@@ -149,118 +166,120 @@ body::before { content: ''; position: fixed; inset: 0; background-image: linear-
     <span id="lastUpdate"></span>
   </div>
 
-  <div class="error-note" id="errorNote"></div>
-
-  <!-- TABS -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="showTab('crypto')">🔮 Crypto</button>
-    <button class="tab-btn" onclick="showTab('stocks')">📈 Acțiuni</button>
-    <button class="tab-btn" onclick="showTab('metals')">🥇 Metale</button>
-    <button class="tab-btn" onclick="showTab('energy')">⛽ Energie & Mărfuri</button>
-    <button class="tab-btn" onclick="showTab('fx')">💱 FX & Indici</button>
+    <button class="tab-btn active" onclick="showTab('crypto', this)">🔮 Crypto</button>
+    <button class="tab-btn" onclick="showTab('stocks', this)">📈 Acțiuni</button>
+    <button class="tab-btn" onclick="showTab('metals', this)">🥇 Metale</button>
+    <button class="tab-btn" onclick="showTab('energy', this)">⛽ Energie</button>
+    <button class="tab-btn" onclick="showTab('fx', this)">💱 FX & Indici</button>
+    <button class="tab-btn" onclick="showTab('positions', this)">🎯 Poziții Live</button>
   </div>
 
-  <!-- PRICE GRIDS -->
-  <div id="tab-crypto" class="price-grid"></div>
-  <div id="tab-stocks" class="price-grid" style="display:none"></div>
-  <div id="tab-metals" class="price-grid" style="display:none"></div>
-  <div id="tab-energy" class="price-grid" style="display:none"></div>
-  <div id="tab-fx" class="price-grid" style="display:none"></div>
+  <div id="tab-crypto"    class="price-grid"></div>
+  <div id="tab-stocks"    class="price-grid" style="display:none"></div>
+  <div id="tab-metals"    class="price-grid" style="display:none"></div>
+  <div id="tab-energy"    class="price-grid" style="display:none"></div>
+  <div id="tab-fx"        class="price-grid" style="display:none"></div>
+  <div id="tab-positions" class="pos-grid"   style="display:none"></div>
 
 </div>
-
 <script>
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
-const FINNHUB_KEY = 'd6srv1pr01qoqoir9nrgd6srv1pr01qoqoir9ns0'; // <-- înlocuiește cu noul tău API key
+// ─── CONFIG — înlocuiește cu cheia ta ─────────────────────────────────────────
+const FINNHUB_KEY = 'd6srv1pr01qoqoir9nrgd6srv1pr01qoqoir9ns0';
 
 // ─── CLOCK ───────────────────────────────────────────────────────────────────
 function updateClock() {
-  const now = new Date();
-  document.getElementById('clock').textContent = now.toLocaleTimeString('ro-RO', { hour12: false });
-  document.getElementById('dateDisp').textContent = now.toLocaleDateString('ro-RO', { weekday: 'short', day: 'numeric', month: 'long' });
+  const n = new Date();
+  document.getElementById('clock').textContent = n.toLocaleTimeString('ro-RO', { hour12: false });
+  document.getElementById('dateDisp').textContent = n.toLocaleDateString('ro-RO', { weekday: 'short', day: 'numeric', month: 'long' });
 }
 setInterval(updateClock, 1000); updateClock();
 
 // ─── MARKETS ─────────────────────────────────────────────────────────────────
 const MARKETS = [
-  { name: 'NYSE', label: 'New York', tz: 'America/New_York', open: 9.5, close: 16 },
-  { name: 'LSE',  label: 'Londra',   tz: 'Europe/London',   open: 8,   close: 16.5 },
-  { name: 'XETRA',label: 'Frankfurt',tz: 'Europe/Berlin',   open: 9,   close: 17.5 },
-  { name: 'TSE',  label: 'Tokyo',    tz: 'Asia/Tokyo',      open: 9,   close: 15.5 },
-  { name: 'CRYPTO',label: 'Crypto',  tz: null,              open: 0,   close: 24 },
+  { name:'NYSE',   label:'New York',  tz:'America/New_York', open:9.5,  close:16 },
+  { name:'LSE',    label:'Londra',    tz:'Europe/London',    open:8,    close:16.5 },
+  { name:'XETRA',  label:'Frankfurt', tz:'Europe/Berlin',    open:9,    close:17.5 },
+  { name:'TSE',    label:'Tokyo',     tz:'Asia/Tokyo',       open:9,    close:15.5 },
+  { name:'CRYPTO', label:'Crypto',    tz:null,               open:0,    close:24 },
 ];
 function getStatus(m) {
-  if (!m.tz) return { s: 'open', label: 'DESCHIS 24/7', cd: '' };
-  const local = new Date(new Date().toLocaleString('en-US', { timeZone: m.tz }));
-  const h = local.getHours() + local.getMinutes() / 60;
-  const day = local.getDay();
-  if (day === 0 || day === 6) return { s: 'closed', label: 'ÎNCHIS', cd: 'Weekend' };
-  if (h >= m.open && h < m.close) { const r = m.close - h; return { s: 'open', label: 'DESCHIS', cd: `Închide ~${Math.floor(r)}h ${Math.floor((r%1)*60)}m` }; }
-  if (h < m.open) { const u = m.open - h; return { s: 'pre', label: 'PRE-MKT', cd: `Deschide ~${Math.floor(u)}h ${Math.floor((u%1)*60)}m` }; }
-  return { s: 'closed', label: 'ÎNCHIS', cd: 'Redeschide mâine' };
+  if (!m.tz) return { s:'open', label:'DESCHIS 24/7', cd:'' };
+  const l = new Date(new Date().toLocaleString('en-US', { timeZone: m.tz }));
+  const h = l.getHours() + l.getMinutes()/60, d = l.getDay();
+  if (d===0||d===6) return { s:'closed', label:'ÎNCHIS', cd:'Weekend' };
+  if (h>=m.open&&h<m.close) { const r=m.close-h; return { s:'open', label:'DESCHIS', cd:`Închide ~${Math.floor(r)}h ${Math.floor((r%1)*60)}m` }; }
+  if (h<m.open) { const u=m.open-h; return { s:'pre', label:'PRE-MKT', cd:`Deschide ~${Math.floor(u)}h ${Math.floor((u%1)*60)}m` }; }
+  return { s:'closed', label:'ÎNCHIS', cd:'Redeschide mâine' };
 }
 function renderMarkets() {
   document.getElementById('marketBanner').innerHTML = MARKETS.map(m => {
-    const { s, label, cd } = getStatus(m);
-    return `<div class="market-card ${s}"><div class="market-label">${m.label}</div><div class="market-name">${m.name}</div><div class="market-status ${s}">${label}</div>${cd ? `<div class="market-countdown">${cd}</div>` : ''}</div>`;
+    const {s,label,cd} = getStatus(m);
+    return `<div class="market-card ${s}"><div class="market-label">${m.label}</div><div class="market-name">${m.name}</div><div class="market-status ${s}">${label}</div>${cd?`<div class="market-countdown">${cd}</div>`:''}</div>`;
   }).join('');
 }
 
 // ─── NYSE COUNTDOWN ───────────────────────────────────────────────────────────
-function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+function pad(n) { return String(Math.floor(n)).padStart(2,'0'); }
 function updateNYSE() {
-  const ny = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
-  const d = ny.getDay(), c = ny.getHours() * 3600 + ny.getMinutes() * 60 + ny.getSeconds();
-  const o = 34200, cl = 57600;
-  const iw = d === 0 || d === 6, io = !iw && c >= o && c < cl;
-  const el = document.getElementById('nyseCountdown'), inf = document.getElementById('nyseInfo');
+  const ny = new Date(new Date().toLocaleString('en-US', { timeZone:'America/New_York' }));
+  const d=ny.getDay(), c=ny.getHours()*3600+ny.getMinutes()*60+ny.getSeconds();
+  const o=34200, cl=57600, iw=d===0||d===6, io=!iw&&c>=o&&c<cl;
+  const el=document.getElementById('nyseCountdown'), inf=document.getElementById('nyseInfo');
   if (io) {
-    const r = cl - c;
-    el.textContent = `${pad(r/3600)}:${pad((r%3600)/60)}:${pad(r%60)}`;
-    el.style.color = 'var(--green)';
-    inf.textContent = '🟢 NYSE DESCHIS — timp rămas până la închidere';
+    const r=cl-c; el.textContent=`${pad(r/3600)}:${pad((r%3600)/60)}:${pad(r%60)}`;
+    el.style.color='var(--green)'; inf.textContent='🟢 NYSE DESCHIS — timp rămas până la închidere';
   } else {
-    let u;
-    if (iw) { const dm = ((8-d)%7)||7; u = dm*86400-c+o; }
-    else if (c < o) { u = o - c; }
-    else { u = 86400 - c + o; }
-    el.textContent = `${pad(u/3600)}:${pad((u%3600)/60)}:${pad(u%60)}`;
-    el.style.color = 'var(--gold)';
-    inf.textContent = iw ? '⏸ Weekend — redeschide Luni 15:30 (RO)' : '⏰ Timp până la deschidere NYSE (15:30 ora României)';
-    if (u <= 1800 && u > 1798 && Notification.permission === 'granted') new Notification('📈 NYSE deschide în 30 min!', { body: 'Pregătește-ți pozițiile.' });
+    let u; if(iw){const dm=((8-d)%7)||7;u=dm*86400-c+o;}else if(c<o){u=o-c;}else{u=86400-c+o;}
+    el.textContent=`${pad(u/3600)}:${pad((u%3600)/60)}:${pad(u%60)}`;
+    el.style.color='var(--gold)'; inf.textContent=iw?'⏸ Weekend — redeschide Luni 15:30 (RO)':'⏰ Timp până la deschidere NYSE (15:30 ora României)';
   }
 }
-setInterval(() => { renderMarkets(); updateNYSE(); }, 1000);
-renderMarkets(); updateNYSE();
+setInterval(()=>{renderMarkets();updateNYSE();},1000); renderMarkets(); updateNYSE();
 
 // ─── TABS ─────────────────────────────────────────────────────────────────────
-let activeTab = 'crypto';
-function showTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.remove('active'));
-  event.target.classList.add('active');
-  ['crypto','stocks','metals','energy','fx'].forEach(t => {
-    document.getElementById('tab-'+t).style.display = t === tab ? 'grid' : 'none';
+function showTab(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  ['crypto','stocks','metals','energy','fx','positions'].forEach(t => {
+    const el = document.getElementById('tab-'+t);
+    el.style.display = t===tab ? (t==='positions'?'grid':'grid') : 'none';
   });
-  activeTab = tab;
 }
 
-// ─── PRICE CARD ───────────────────────────────────────────────────────────────
-function fmtPrice(p, decimals) {
-  if (!p && p !== 0) return '---';
-  if (p >= 1000) return p.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-  if (p >= 10) return p.toFixed(2);
-  if (p >= 1) return p.toFixed(3);
-  return p.toFixed(decimals || 5);
+// ─── FORMAT HELPERS ───────────────────────────────────────────────────────────
+function fmtP(p) {
+  if (!p && p!==0) return '---';
+  if (p>=1000) return p.toLocaleString('en-US',{maximumFractionDigits:0});
+  if (p>=10) return p.toFixed(2);
+  if (p>=1) return p.toFixed(3);
+  return p.toFixed(6);
 }
-
-function fmtChange(c) {
-  if (c === null || c === undefined) return '<span class="change-flat">-- %</span>';
-  const cls = c > 0 ? 'change-up' : c < 0 ? 'change-down' : 'change-flat';
-  const sign = c > 0 ? '▲' : c < 0 ? '▼' : '◆';
-  return `<span class="${cls}">${sign} ${Math.abs(c).toFixed(2)}%</span>`;
+function fmtC(c) {
+  if (c===null||c===undefined) return '<span class="change-flat">-- %</span>';
+  const cls=c>0?'change-up':c<0?'change-down':'change-flat';
+  const s=c>0?'▲':c<0?'▼':'◆';
+  return `<span class="${cls}">${s} ${Math.abs(c).toFixed(2)}%</span>`;
 }
-
-function makeLoadingCard(tag, name, ticker) {
+function makeCard(tag, name, ticker, price, change, extra) {
+  return `<div class="price-card">
+    <span class="price-card-tag tag-${tag}">${tag==='defense'?'APĂRARE':tag.toUpperCase()}</span>
+    <div class="price-card-name">${name}</div>
+    <div class="price-card-ticker">${ticker}</div>
+    <div class="price-card-price">$${fmtP(price)}</div>
+    <div class="price-card-change">${fmtC(change)}</div>
+    ${extra?`<div class="price-card-extra">${extra}</div>`:''}
+  </div>`;
+}
+function makeErrCard(tag, name, ticker) {
+  return `<div class="price-card" style="border-color:rgba(255,77,109,0.15)">
+    <span class="price-card-tag tag-${tag}">${tag.toUpperCase()}</span>
+    <div class="price-card-name">${name}</div>
+    <div class="price-card-ticker">${ticker}</div>
+    <div class="price-loading" style="color:var(--red)">⚠ Indisponibil</div>
+  </div>`;
+}
+function makeLoadCard(tag, name, ticker) {
   return `<div class="price-card">
     <span class="price-card-tag tag-${tag}">${tag.toUpperCase()}</span>
     <div class="price-card-name">${name}</div>
@@ -269,235 +288,266 @@ function makeLoadingCard(tag, name, ticker) {
   </div>`;
 }
 
-function makeCard(tag, name, ticker, price, change24h, extra) {
-  const currency = ['stock','index','fx'].includes(tag) ? '$' : tag === 'metal' || tag === 'energy' || tag === 'commodity' ? '$' : '$';
-  return `<div class="price-card">
-    <span class="price-card-tag tag-${tag}">${tag === 'defense' ? 'APĂRARE' : tag.toUpperCase()}</span>
-    <div class="price-card-name">${name}</div>
-    <div class="price-card-ticker">${ticker}</div>
-    <div class="price-card-price">${currency}${fmtPrice(price)}</div>
-    <div class="price-card-change">${fmtChange(change24h)}</div>
-    ${extra ? `<div class="price-card-extra">${extra}</div>` : ''}
-  </div>`;
-}
-
-function makeErrCard(tag, name, ticker, msg) {
-  return `<div class="price-card" style="border-color:rgba(255,77,109,0.2)">
-    <span class="price-card-tag tag-${tag}">${tag.toUpperCase()}</span>
-    <div class="price-card-name">${name}</div>
-    <div class="price-card-ticker">${ticker}</div>
-    <div class="price-loading" style="color:var(--red)">⚠ ${msg || 'Eroare'}</div>
-  </div>`;
-}
-
 // ─── STATUS ───────────────────────────────────────────────────────────────────
-function setStatus(state, text) {
-  const dot = document.getElementById('statusDot');
-  dot.className = 'status-dot ' + state;
-  document.getElementById('statusText').textContent = text;
+function setStatus(s, t) {
+  document.getElementById('statusDot').className='status-dot '+s;
+  document.getElementById('statusText').textContent=t;
 }
 
-// ─── CRYPTO — CoinGecko (fără API key) ───────────────────────────────────────
-const CRYPTO_IDS = {
-  'bitcoin': { name: 'Bitcoin', ticker: 'BTC/USD' },
-  'ethereum': { name: 'Ethereum', ticker: 'ETH/USD' },
-  'solana': { name: 'Solana', ticker: 'SOL/USD' },
-  'binancecoin': { name: 'BNB', ticker: 'BNB/USD' },
-  'ripple': { name: 'XRP', ticker: 'XRP/USD' },
-  'dogecoin': { name: 'Dogecoin', ticker: 'DOGE/USD' },
-  'shiba-inu': { name: 'Shiba Inu', ticker: 'SHIB/USD' },
-  'cardano': { name: 'Cardano', ticker: 'ADA/USD' },
-  'avalanche-2': { name: 'Avalanche', ticker: 'AVAX/USD' },
-  'polkadot': { name: 'Polkadot', ticker: 'DOT/USD' },
-  'chainlink': { name: 'Chainlink', ticker: 'LINK/USD' },
-  'uniswap': { name: 'Uniswap', ticker: 'UNI/USD' },
+// ─── CRYPTO — CoinGecko ───────────────────────────────────────────────────────
+const CRYPTO = {
+  'bitcoin':      {name:'Bitcoin',    ticker:'BTC/USD'},
+  'ethereum':     {name:'Ethereum',   ticker:'ETH/USD'},
+  'solana':       {name:'Solana',     ticker:'SOL/USD'},
+  'binancecoin':  {name:'BNB',        ticker:'BNB/USD'},
+  'ripple':       {name:'XRP',        ticker:'XRP/USD'},
+  'dogecoin':     {name:'Dogecoin',   ticker:'DOGE/USD'},
+  'shiba-inu':    {name:'Shiba Inu',  ticker:'SHIB/USD'},
+  'cardano':      {name:'Cardano',    ticker:'ADA/USD'},
+  'avalanche-2':  {name:'Avalanche',  ticker:'AVAX/USD'},
+  'polkadot':     {name:'Polkadot',   ticker:'DOT/USD'},
+  'chainlink':    {name:'Chainlink',  ticker:'LINK/USD'},
+  'uniswap':      {name:'Uniswap',    ticker:'UNI/USD'},
 };
 
 async function fetchCrypto() {
-  const ids = Object.keys(CRYPTO_IDS).join(',');
-  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error('CoinGecko error ' + res.status);
-  return res.json();
+  const ids = Object.keys(CRYPTO).join(',');
+  const r = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true`);
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
 }
 
 function renderCrypto(data) {
-  const html = Object.entries(CRYPTO_IDS).map(([id, info]) => {
-    const d = data[id];
-    if (!d) return makeErrCard('crypto', info.name, info.ticker, 'Date indisponibile');
-    const mcap = d.usd_market_cap ? `Mcap: $${(d.usd_market_cap/1e9).toFixed(1)}B` : '';
-    return makeCard('crypto', info.name, info.ticker, d.usd, d.usd_24h_change, mcap);
+  document.getElementById('tab-crypto').innerHTML = Object.entries(CRYPTO).map(([id,info]) => {
+    const d=data[id]; if(!d) return makeErrCard('crypto',info.name,info.ticker);
+    const mc=d.usd_market_cap?`Mcap: $${(d.usd_market_cap/1e9).toFixed(1)}B`:'';
+    return makeCard('crypto',info.name,info.ticker,d.usd,d.usd_24h_change,mc);
   }).join('');
-  document.getElementById('tab-crypto').innerHTML = html;
 }
 
 // ─── STOCKS — Finnhub ─────────────────────────────────────────────────────────
 const STOCKS = [
-  { symbol: 'NVDA', name: 'Nvidia', tag: 'stock' },
-  { symbol: 'MSFT', name: 'Microsoft', tag: 'stock' },
-  { symbol: 'AAPL', name: 'Apple', tag: 'stock' },
-  { symbol: 'PLTR', name: 'Palantir', tag: 'stock' },
-  { symbol: 'RTX',  name: 'RTX Corp', tag: 'defense' },
-  { symbol: 'XOM',  name: 'ExxonMobil', tag: 'energy' },
-  { symbol: 'NEE',  name: 'NextEra Energy', tag: 'energy' },
-  { symbol: 'RHM.DE', name: 'Rheinmetall', tag: 'defense' },
+  {symbol:'NVDA',   name:'Nvidia',         tag:'stock'},
+  {symbol:'MSFT',   name:'Microsoft',      tag:'stock'},
+  {symbol:'AAPL',   name:'Apple',          tag:'stock'},
+  {symbol:'PLTR',   name:'Palantir',       tag:'stock'},
+  {symbol:'RTX',    name:'RTX Corp',       tag:'defense'},
+  {symbol:'XOM',    name:'ExxonMobil',     tag:'energy'},
+  {symbol:'NEE',    name:'NextEra Energy', tag:'energy'},
+  {symbol:'RHM.DE', name:'Rheinmetall',    tag:'defense'},
 ];
 
+const stockPrices = {};
+
 async function fetchStock(s) {
-  const url = `https://finnhub.io/api/v1/quote?symbol=${s.symbol}&token=${FINNHUB_KEY}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(res.status);
-  const d = await res.json();
-  return { ...s, price: d.c, change: d.dp, open: d.o, high: d.h, low: d.l };
+  const r = await fetch(`https://finnhub.io/api/v1/quote?symbol=${s.symbol}&token=${FINNHUB_KEY}`);
+  if (!r.ok) throw new Error(r.status);
+  const d = await r.json();
+  if (d.c) stockPrices[s.symbol] = d.c;
+  return {...s, price:d.c, change:d.dp, high:d.h, low:d.l};
 }
 
 async function fetchAllStocks() {
   const results = await Promise.allSettled(STOCKS.map(fetchStock));
-  const html = results.map((r, i) => {
-    const s = STOCKS[i];
-    if (r.status === 'rejected' || !r.value.price) return makeErrCard(s.tag, s.name, s.symbol, 'API indisponibil');
-    const v = r.value;
-    const extra = v.high ? `H: $${fmtPrice(v.high)} · L: $${fmtPrice(v.low)}` : '';
-    return makeCard(s.tag, s.name, s.symbol, v.price, v.change, extra + '<br><span style="color:var(--muted)">⏱ Delay 15 min</span>');
+  document.getElementById('tab-stocks').innerHTML = results.map((r,i) => {
+    const s=STOCKS[i];
+    if (r.status==='rejected'||!r.value?.price) return makeErrCard(s.tag,s.name,s.symbol);
+    const v=r.value;
+    return makeCard(s.tag,s.name,s.symbol,v.price,v.change,`H: $${fmtP(v.high)} · L: $${fmtP(v.low)}<br><span style="color:var(--muted)">⏱ Delay 15 min</span>`);
   }).join('');
-  document.getElementById('tab-stocks').innerHTML = html;
 }
 
-// ─── METALE — Stooq (proxy CORS) ─────────────────────────────────────────────
-// Folosim API-ul de schimb valutar + prețuri mărfuri via Yahoo Finance unofficial
-async function fetchMetalPrice(symbol, name, ticker, tag) {
+// ─── METALE — Stooq via proxy ─────────────────────────────────────────────────
+const metalPrices = {};
+
+async function fetchStooq(symbol, name, ticker, tag) {
   try {
-    // folosim stooq via cors proxy
     const url = `https://stooq.com/q/l/?s=${symbol}&f=sd2t2ohlcv&h&e=csv`;
-    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
-    const text = await res.text();
-    const lines = text.trim().split('\n');
-    if (lines.length < 2) throw new Error('No data');
-    const parts = lines[1].split(',');
-    const close = parseFloat(parts[5]);
-    const open = parseFloat(parts[3]);
-    const change = open ? ((close - open) / open) * 100 : null;
-    return makeCard(tag, name, ticker, close, change, '');
-  } catch {
-    return makeErrCard(tag, name, ticker, 'Date indisponibile');
-  }
+    const r = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
+    const text = await r.text();
+    const parts = text.trim().split('\n')[1]?.split(',');
+    if (!parts) throw new Error('no data');
+    const close=parseFloat(parts[5]), open=parseFloat(parts[3]);
+    const change=open?((close-open)/open)*100:null;
+    metalPrices[ticker] = close;
+    return makeCard(tag,name,ticker,close,change,'');
+  } catch { return makeErrCard(tag,name,ticker); }
 }
 
 async function fetchMetals() {
   const assets = [
-    { symbol: 'xauusd', name: 'Aur (Gold)', ticker: 'XAU/USD', tag: 'metal' },
-    { symbol: 'xagusd', name: 'Argint (Silver)', ticker: 'XAG/USD', tag: 'metal' },
-    { symbol: 'ptusd',  name: 'Platină', ticker: 'PT/USD', tag: 'metal' },
-    { symbol: 'pdusd',  name: 'Paladiu', ticker: 'PD/USD', tag: 'metal' },
-    { symbol: 'hgusd',  name: 'Cupru', ticker: 'HG/USD', tag: 'commodity' },
-    { symbol: 'alusd',  name: 'Aluminiu', ticker: 'AL/USD', tag: 'commodity' },
+    {symbol:'xauusd', name:'Aur (Gold)',   ticker:'XAU/USD', tag:'metal'},
+    {symbol:'xagusd', name:'Argint',       ticker:'XAG/USD', tag:'metal'},
+    {symbol:'ptusd',  name:'Platină',      ticker:'PT/USD',  tag:'metal'},
+    {symbol:'pdusd',  name:'Paladiu',      ticker:'PD/USD',  tag:'metal'},
+    {symbol:'hgusd',  name:'Cupru',        ticker:'HG/USD',  tag:'commodity'},
+    {symbol:'alusd',  name:'Aluminiu',     ticker:'AL/USD',  tag:'commodity'},
   ];
-  const cards = await Promise.all(assets.map(a => fetchMetalPrice(a.symbol, a.name, a.ticker, a.tag)));
+  const cards = await Promise.all(assets.map(a => fetchStooq(a.symbol,a.name,a.ticker,a.tag)));
   document.getElementById('tab-metals').innerHTML = cards.join('');
 }
 
 async function fetchEnergy() {
   const assets = [
-    { symbol: 'clf25.nyb', name: 'Petrol WTI', ticker: 'CL/USD', tag: 'energy' },
-    { symbol: 'cobz25.nyb', name: 'Petrol Brent', ticker: 'BZ/USD', tag: 'energy' },
-    { symbol: 'ngf25.nyb', name: 'Gaz Natural', ticker: 'NG/USD', tag: 'energy' },
-    { symbol: 'zwf25.cbt', name: 'Grâu (Wheat)', ticker: 'ZW/USD', tag: 'commodity' },
-    { symbol: 'zcf25.cbt', name: 'Porumb (Corn)', ticker: 'ZC/USD', tag: 'commodity' },
-    { symbol: 'sbf25.nys', name: 'Zahăr (Sugar)', ticker: 'SB/USD', tag: 'commodity' },
+    {symbol:'clf25.nyb',  name:'Petrol WTI',  ticker:'WTI/USD', tag:'energy'},
+    {symbol:'cobz25.nyb', name:'Petrol Brent', ticker:'BZ/USD',  tag:'energy'},
+    {symbol:'ngf25.nyb',  name:'Gaz Natural',  ticker:'NG/USD',  tag:'energy'},
+    {symbol:'zwf25.cbt',  name:'Grâu',         ticker:'ZW/USD',  tag:'commodity'},
+    {symbol:'zcf25.cbt',  name:'Porumb',        ticker:'ZC/USD',  tag:'commodity'},
+    {symbol:'sbf25.nys',  name:'Zahăr',         ticker:'SB/USD',  tag:'commodity'},
   ];
-  const cards = await Promise.all(assets.map(a => fetchMetalPrice(a.symbol, a.name, a.ticker, a.tag)));
+  const cards = await Promise.all(assets.map(a => fetchStooq(a.symbol,a.name,a.ticker,a.tag)));
   document.getElementById('tab-energy').innerHTML = cards.join('');
 }
 
-// ─── FX & INDICI — ExchangeRate + Finnhub ─────────────────────────────────────
+// ─── FX & INDICI ──────────────────────────────────────────────────────────────
 async function fetchFX() {
-  const fxAssets = [
-    { from: 'EUR', to: 'USD', name: 'Euro / Dolar', ticker: 'EUR/USD', tag: 'fx' },
-    { from: 'GBP', to: 'USD', name: 'Liră / Dolar', ticker: 'GBP/USD', tag: 'fx' },
-    { from: 'USD', to: 'RON', name: 'Dolar / Leu', ticker: 'USD/RON', tag: 'fx' },
-    { from: 'EUR', to: 'RON', name: 'Euro / Leu', ticker: 'EUR/RON', tag: 'fx' },
+  const fxPairs = [
+    {from:'EUR',to:'USD',name:'Euro / Dolar',    ticker:'EUR/USD'},
+    {from:'GBP',to:'USD',name:'Liră / Dolar',    ticker:'GBP/USD'},
+    {from:'USD',to:'RON',name:'Dolar / Leu',     ticker:'USD/RON'},
+    {from:'EUR',to:'RON',name:'Euro / Leu',      ticker:'EUR/RON'},
   ];
+  const fxCards = await Promise.all(fxPairs.map(async a => {
+    try {
+      const r = await fetch(`https://api.exchangerate-api.com/v4/latest/${a.from}`);
+      const d = await r.json();
+      return makeCard('fx',a.name,a.ticker,d.rates[a.to],null,'Rată live');
+    } catch { return makeErrCard('fx',a.name,a.ticker); }
+  }));
 
   const indices = [
-    { symbol: '^SPX', name: 'S&P 500', ticker: 'SPX', tag: 'index' },
-    { symbol: '^NDX', name: 'NASDAQ 100', ticker: 'NDX', tag: 'index' },
-    { symbol: '^DJI', name: 'Dow Jones', ticker: 'DJI', tag: 'index' },
+    {symbol:'^SPX', name:'S&P 500',   ticker:'SPX'},
+    {symbol:'^NDX', name:'NASDAQ 100',ticker:'NDX'},
+    {symbol:'^DJI', name:'Dow Jones', ticker:'DJI'},
   ];
-
-  // FX via exchangerate-api (gratuit, fara key)
-  const fxCards = await Promise.all(fxAssets.map(async a => {
-    try {
-      const url = `https://api.exchangerate-api.com/v4/latest/${a.from}`;
-      const res = await fetch(url);
-      const d = await res.json();
-      const rate = d.rates[a.to];
-      return makeCard(a.tag, a.name, a.ticker, rate, null, 'Rată de schimb live');
-    } catch {
-      return makeErrCard(a.tag, a.name, a.ticker, 'Eroare');
-    }
-  }));
-
-  // Indici via Finnhub
   const idxCards = await Promise.all(indices.map(async i => {
     try {
-      const url = `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(i.symbol)}&token=${FINNHUB_KEY}`;
-      const res = await fetch(url);
-      const d = await res.json();
-      return makeCard(i.tag, i.name, i.ticker, d.c, d.dp, '⏱ Delay 15 min');
-    } catch {
-      return makeErrCard(i.tag, i.name, i.ticker, 'Eroare');
-    }
+      const r = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(i.symbol)}&token=${FINNHUB_KEY}`);
+      const d = await r.json();
+      if (!d.c) throw new Error('no data');
+      return makeCard('index',i.name,i.ticker,d.c,d.dp,'⏱ Delay 15 min');
+    } catch { return makeErrCard('index',i.name,i.ticker); }
   }));
 
-  document.getElementById('tab-fx').innerHTML = [...fxCards, ...idxCards].join('');
+  document.getElementById('tab-fx').innerHTML = [...fxCards,...idxCards].join('');
+}
+
+// ─── POZIȚII LIVE (bazate pe prețul real) ─────────────────────────────────────
+// Calculează Entry/TP/SL ca % față de prețul curent real
+function calcLevels(price, direction, tpPct, slPct) {
+  if (!price) return { entry: '---', tp: '---', sl: '---', rr: '---' };
+  const entry = price;
+  let tp, sl;
+  if (direction === 'LONG') {
+    tp = price * (1 + tpPct/100);
+    sl = price * (1 - slPct/100);
+  } else {
+    tp = price * (1 - tpPct/100);
+    sl = price * (1 + slPct/100);
+  }
+  const rr = (tpPct/slPct).toFixed(1);
+  return {
+    entry: `$${fmtP(entry)}`,
+    tp: `$${fmtP(tp)}`,
+    sl: `$${fmtP(sl)}`,
+    rr: `${rr}:1`
+  };
+}
+
+function makePosCard(tag, name, ticker, price, direction, tpPct, slPct, type, note, i) {
+  const lvl = calcLevels(price, direction, tpPct, slPct);
+  const dirClass = direction==='LONG'?'dir-long':'dir-short';
+  return `<div class="pos-card" style="animation-delay:${i*0.06}s">
+    <div class="pos-card-header">
+      <div class="pos-card-left">
+        <span class="price-card-tag tag-${tag}" style="margin-bottom:4px;">${tag==='defense'?'APĂRARE':tag.toUpperCase()}</span>
+        <div class="pos-card-name">${name}</div>
+        <div class="pos-card-ticker">${ticker}</div>
+        <div class="pos-card-price">Preț curent: ${price?'$'+fmtP(price):'Se încarcă...'}</div>
+      </div>
+      <span class="pos-direction ${dirClass}">${direction}</span>
+    </div>
+    <span class="pos-type-badge">${type.toUpperCase()}</span>
+    <div class="pos-levels">
+      <div class="pos-level"><div class="pos-level-label">Entry</div><div class="pos-level-val entry-val">${lvl.entry}</div></div>
+      <div class="pos-level"><div class="pos-level-label">Take Profit</div><div class="pos-level-val tp-val">${lvl.tp}</div></div>
+      <div class="pos-level"><div class="pos-level-label">Stop Loss</div><div class="pos-level-val sl-val">${lvl.sl}</div></div>
+    </div>
+    <div class="pos-rr">⚖ Risk/Reward: ${lvl.rr} · TP ${tpPct}% · SL ${slPct}%</div>
+    <div class="pos-note">${note}</div>
+  </div>`;
+}
+
+function renderPositions(cryptoData) {
+  // Prețuri din datele deja încărcate
+  const btc  = cryptoData?.bitcoin?.usd;
+  const eth  = cryptoData?.ethereum?.usd;
+  const sol  = cryptoData?.solana?.usd;
+  const xrp  = cryptoData?.ripple?.usd;
+  const nvda = stockPrices['NVDA'];
+  const pltr = stockPrices['PLTR'];
+  const rtx  = stockPrices['RTX'];
+  const xom  = stockPrices['XOM'];
+  const xau  = metalPrices['XAU/USD'];
+  const xag  = metalPrices['XAG/USD'];
+  const wti  = metalPrices['WTI/USD'];
+
+  const positions = [
+    { tag:'crypto',  name:'Bitcoin',       ticker:'BTC/USD', price:btc,  dir:'LONG',  tp:8,   sl:4,   type:'swing',    note:'Trend bullish post-halving. Suport major ținut. Acumulare ETF-uri spot continuă.' },
+    { tag:'metal',   name:'Aur (Gold)',     ticker:'XAU/USD', price:xau,  dir:'LONG',  tp:4,   sl:2,   type:'swing',    note:'Safe haven activ. Bănci centrale cumpără record. Fed dovish favorabil.' },
+    { tag:'stock',   name:'Nvidia',         ticker:'NVDA',    price:nvda, dir:'LONG',  tp:10,  sl:5,   type:'swing',    note:'Dominanță AI chips. Cerere Blackwell accelerată. Breakout tehnic confirmat.' },
+    { tag:'crypto',  name:'Ethereum',       ticker:'ETH/USD', price:eth,  dir:'LONG',  tp:12,  sl:6,   type:'swing',    note:'Upgrade-uri scalabilitate L2. Subestimat față de BTC. ETF staking pending.' },
+    { tag:'defense', name:'RTX Corp',       ticker:'RTX',     price:rtx,  dir:'LONG',  tp:8,   sl:4,   type:'swing',    note:'Carnet comenzi record. Sisteme Patriot în cerere maximă globală.' },
+    { tag:'energy',  name:'WTI Petrol',     ticker:'WTI/USD', price:wti,  dir:'LONG',  tp:6,   sl:3,   type:'intraday', note:'Rebound tehnic de la suport. Tensiuni geopolitice susțin prețul.' },
+    { tag:'metal',   name:'Argint',         ticker:'XAG/USD', price:xag,  dir:'LONG',  tp:10,  sl:5,   type:'swing',    note:'Ratio Au/Ag subestimator. Cerere industrială panouri solare & EV în creștere.' },
+    { tag:'stock',   name:'Palantir',       ticker:'PLTR',    price:pltr, dir:'LONG',  tp:15,  sl:7,   type:'swing',    note:'Contracte AI guvernamentale în creștere. NATO & DoD extind utilizarea AIP.' },
+    { tag:'crypto',  name:'Solana',         ticker:'SOL/USD', price:sol,  dir:'LONG',  tp:15,  sl:7,   type:'swing',    note:'Ecosistem DeFi în creștere. Volum tranzacții record. Momentum tehnic puternic.' },
+    { tag:'stock',   name:'ExxonMobil',     ticker:'XOM',     price:xom,  dir:'LONG',  tp:6,   sl:3,   type:'swing',    note:'Marje ridicate petrol. Program buyback agresiv. Dividend stabil.' },
+    { tag:'crypto',  name:'XRP',            ticker:'XRP/USD', price:xrp,  dir:'LONG',  tp:20,  sl:8,   type:'swing',    note:'Claritate regulatorie în creștere. Parteneriate bănci internaționale.' },
+  ];
+
+  document.getElementById('tab-positions').innerHTML = positions.map((p,i) =>
+    makePosCard(p.tag, p.name, p.ticker, p.price, p.dir, p.tp, p.sl, p.type, p.note, i)
+  ).join('');
 }
 
 // ─── MAIN REFRESH ─────────────────────────────────────────────────────────────
+let cryptoDataGlobal = null;
+
 async function refreshAll() {
   const btn = document.getElementById('refreshBtn');
-  btn.disabled = true;
-  btn.textContent = '⟳ Se actualizează...';
+  btn.disabled = true; btn.textContent = '⟳ Se actualizează...';
   setStatus('loading', 'Se încarcă datele live...');
-  document.getElementById('errorNote').style.display = 'none';
 
   // Loading placeholders
-  document.getElementById('tab-crypto').innerHTML = Object.entries(CRYPTO_IDS).map(([id, i]) => makeLoadingCard('crypto', i.name, i.ticker)).join('');
-  document.getElementById('tab-stocks').innerHTML = STOCKS.map(s => makeLoadingCard(s.tag, s.name, s.symbol)).join('');
+  document.getElementById('tab-crypto').innerHTML = Object.entries(CRYPTO).map(([id,i]) => makeLoadCard('crypto',i.name,i.ticker)).join('');
+  document.getElementById('tab-stocks').innerHTML = STOCKS.map(s => makeLoadCard(s.tag,s.name,s.symbol)).join('');
+  document.getElementById('tab-positions').innerHTML = '<div class="loading-full" style="grid-column:1/-1"><div class="spinner"></div><div class="spinner-text">Se calculează pozițiile pe baza prețurilor reale...</div></div>';
 
   const errors = [];
 
-  try { const data = await fetchCrypto(); renderCrypto(data); }
-  catch (e) { errors.push('Crypto (CoinGecko)'); document.getElementById('tab-crypto').innerHTML = '<div style="color:var(--red);padding:20px;font-size:11px;">⚠ Nu s-au putut încărca datele crypto. Încearcă din nou.</div>'; }
+  try {
+    cryptoDataGlobal = await fetchCrypto();
+    renderCrypto(cryptoDataGlobal);
+  } catch { errors.push('Crypto'); }
 
-  try { await fetchAllStocks(); }
-  catch (e) { errors.push('Acțiuni (Finnhub)'); }
+  try { await fetchAllStocks(); } catch { errors.push('Acțiuni'); }
+  try { await fetchMetals(); }    catch { errors.push('Metale'); }
+  try { await fetchEnergy(); }    catch { errors.push('Energie'); }
+  try { await fetchFX(); }        catch { errors.push('FX'); }
 
-  try { await fetchMetals(); }
-  catch (e) { errors.push('Metale & Mărfuri'); }
-
-  try { await fetchEnergy(); }
-  catch (e) { errors.push('Energie'); }
-
-  try { await fetchFX(); }
-  catch (e) { errors.push('FX & Indici'); }
+  // Pozițiile se calculează DUPĂ ce s-au încărcat toate prețurile
+  renderPositions(cryptoDataGlobal);
 
   const now = new Date();
-  document.getElementById('lastUpdate').textContent = `Actualizat: ${now.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' })}`;
+  document.getElementById('lastUpdate').textContent = `Actualizat: ${now.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}`;
+  setStatus(errors.length===0?'live':'error', errors.length===0 ? 'Date live active · Crypto în timp real · Acțiuni delay 15 min' : `Erori la: ${errors.join(', ')}`);
 
-  if (errors.length === 0) {
-    setStatus('live', 'Date live active · Crypto în timp real · Acțiuni delay 15 min');
-  } else {
-    setStatus('error', `Erori la: ${errors.join(', ')}`);
-    const errEl = document.getElementById('errorNote');
-    errEl.textContent = `⚠ Unele date nu s-au putut încărca: ${errors.join(', ')}. Verifică cheia Finnhub sau încearcă din nou.`;
-    errEl.style.display = 'block';
-  }
-
-  btn.disabled = false;
-  btn.textContent = '⟳ Refresh Live';
+  btn.disabled = false; btn.textContent = '⟳ Refresh Live';
 }
 
 window.addEventListener('load', refreshAll);
 </script>
 </body>
-</html>
+</html>>
