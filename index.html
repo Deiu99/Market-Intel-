@@ -360,7 +360,7 @@ async function fetchAllStocks() {
 // ─── METALE — Stooq via proxy ─────────────────────────────────────────────────
 const metalPrices = {};
 
-async function fetchStooq(symbol, name, ticker, tag) {
+async function fetchStooq(symbol, name, ticker, tag, priceKey) {
   try {
     const url = `https://stooq.com/q/l/?s=${symbol}&f=sd2t2ohlcv&h&e=csv`;
     const r = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
@@ -368,35 +368,38 @@ async function fetchStooq(symbol, name, ticker, tag) {
     const parts = text.trim().split('\n')[1]?.split(',');
     if (!parts) throw new Error('no data');
     const close=parseFloat(parts[5]), open=parseFloat(parts[3]);
+    if (!isNaN(close) && close > 0) {
+      metalPrices[ticker] = close;
+      if (priceKey) metalPrices[priceKey] = close; // alias key
+    }
     const change=open?((close-open)/open)*100:null;
-    metalPrices[ticker] = close;
     return makeCard(tag,name,ticker,close,change,'');
   } catch { return makeErrCard(tag,name,ticker); }
 }
 
 async function fetchMetals() {
   const assets = [
-    {symbol:'xauusd', name:'Aur (Gold)',   ticker:'XAU/USD', tag:'metal'},
-    {symbol:'xagusd', name:'Argint',       ticker:'XAG/USD', tag:'metal'},
-    {symbol:'ptusd',  name:'Platină',      ticker:'PT/USD',  tag:'metal'},
-    {symbol:'pdusd',  name:'Paladiu',      ticker:'PD/USD',  tag:'metal'},
-    {symbol:'hgusd',  name:'Cupru',        ticker:'HG/USD',  tag:'commodity'},
-    {symbol:'alusd',  name:'Aluminiu',     ticker:'AL/USD',  tag:'commodity'},
+    {symbol:'xauusd', name:'Aur (Gold)',   ticker:'XAU/USD', tag:'metal',     key:'gold'},
+    {symbol:'xagusd', name:'Argint',       ticker:'XAG/USD', tag:'metal',     key:'silver'},
+    {symbol:'ptusd',  name:'Platină',      ticker:'PT/USD',  tag:'metal',     key:null},
+    {symbol:'pdusd',  name:'Paladiu',      ticker:'PD/USD',  tag:'metal',     key:null},
+    {symbol:'hgusd',  name:'Cupru',        ticker:'HG/USD',  tag:'commodity', key:null},
+    {symbol:'alusd',  name:'Aluminiu',     ticker:'AL/USD',  tag:'commodity', key:null},
   ];
-  const cards = await Promise.all(assets.map(a => fetchStooq(a.symbol,a.name,a.ticker,a.tag)));
+  const cards = await Promise.all(assets.map(a => fetchStooq(a.symbol,a.name,a.ticker,a.tag,a.key)));
   document.getElementById('tab-metals').innerHTML = cards.join('');
 }
 
 async function fetchEnergy() {
   const assets = [
-    {symbol:'clf25.nyb',  name:'Petrol WTI',  ticker:'WTI/USD', tag:'energy'},
-    {symbol:'cobz25.nyb', name:'Petrol Brent', ticker:'BZ/USD',  tag:'energy'},
-    {symbol:'ngf25.nyb',  name:'Gaz Natural',  ticker:'NG/USD',  tag:'energy'},
-    {symbol:'zwf25.cbt',  name:'Grâu',         ticker:'ZW/USD',  tag:'commodity'},
-    {symbol:'zcf25.cbt',  name:'Porumb',        ticker:'ZC/USD',  tag:'commodity'},
-    {symbol:'sbf25.nys',  name:'Zahăr',         ticker:'SB/USD',  tag:'commodity'},
+    {symbol:'cl.f',       name:'Petrol WTI',  ticker:'WTI/USD', tag:'energy',    key:'wti'},
+    {symbol:'cb.f',       name:'Petrol Brent', ticker:'BZ/USD',  tag:'energy',    key:'brent'},
+    {symbol:'ng.f',       name:'Gaz Natural',  ticker:'NG/USD',  tag:'energy',    key:null},
+    {symbol:'zw.f',       name:'Grâu',         ticker:'ZW/USD',  tag:'commodity', key:null},
+    {symbol:'zc.f',       name:'Porumb',        ticker:'ZC/USD',  tag:'commodity', key:null},
+    {symbol:'sb.f',       name:'Zahăr',         ticker:'SB/USD',  tag:'commodity', key:null},
   ];
-  const cards = await Promise.all(assets.map(a => fetchStooq(a.symbol,a.name,a.ticker,a.tag)));
+  const cards = await Promise.all(assets.map(a => fetchStooq(a.symbol,a.name,a.ticker,a.tag,a.key)));
   document.getElementById('tab-energy').innerHTML = cards.join('');
 }
 
@@ -489,9 +492,9 @@ function renderPositions(cryptoData) {
   const pltr = stockPrices['PLTR'];
   const rtx  = stockPrices['RTX'];
   const xom  = stockPrices['XOM'];
-  const xau  = metalPrices['XAU/USD'];
-  const xag  = metalPrices['XAG/USD'];
-  const wti  = metalPrices['WTI/USD'];
+  const xau  = metalPrices['XAU/USD'] || metalPrices['gold'];
+  const xag  = metalPrices['XAG/USD'] || metalPrices['silver'];
+  const wti  = metalPrices['WTI/USD'] || metalPrices['wti'] || metalPrices['BZ/USD'] || metalPrices['brent'];
 
   const positions = [
     { tag:'crypto',  name:'Bitcoin',       ticker:'BTC/USD', price:btc,  dir:'LONG',  tp:8,   sl:4,   type:'swing',    note:'Trend bullish post-halving. Suport major ținut. Acumulare ETF-uri spot continuă.' },
@@ -550,4 +553,4 @@ async function refreshAll() {
 window.addEventListener('load', refreshAll);
 </script>
 </body>
-</html>>
+</html>
