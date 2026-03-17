@@ -15,161 +15,489 @@
   --text: #e2e0ee; --muted: #555570; --muted2: #333348;
 }
 body { font-family: 'IBM Plex Mono', monospace; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.22; pointer-events: none; z-index: 0; }
-.container { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 16px; }
-.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border2); gap: 10px; flex-wrap: wrap; }
-.brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.08em; background: linear-gradient(90deg, var(--gold), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.brand-sub { font-size: 9px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
-.topbar-right { display: flex; align-items: center; gap: 12px; }
-.clock-time { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--text); line-height: 1; }
-.clock-date { font-size: 9px; color: var(--muted); text-align: right; }
-.refresh-btn { background: linear-gradient(135deg, var(--gold), var(--orange)); border: none; border-radius: 8px; padding: 9px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: #060608; cursor: pointer; text-transform: uppercase; white-space: nowrap; transition: opacity 0.2s; }
+body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.18; pointer-events: none; z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 14px; }
+
+/* TOPBAR */
+.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border2); gap: 10px; flex-wrap: wrap; }
+.brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.08em; background: linear-gradient(90deg, var(--gold), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.brand-sub { font-size: 8px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.clock-time { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--text); line-height: 1; }
+.clock-date { font-size: 8px; color: var(--muted); text-align: right; }
+.refresh-btn { background: linear-gradient(135deg, var(--gold), var(--orange)); border: none; border-radius: 8px; padding: 8px 13px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; color: #060608; cursor: pointer; text-transform: uppercase; white-space: nowrap; transition: opacity 0.2s; }
 .refresh-btn:hover { opacity: 0.85; } .refresh-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.disclaimer { background: rgba(255,77,109,0.05); border: 1px solid rgba(255,77,109,0.15); border-radius: 10px; padding: 10px 14px; font-size: 10px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+
+/* DISCLAIMER */
+.disclaimer { background: rgba(255,77,109,0.05); border: 1px solid rgba(255,77,109,0.15); border-radius: 8px; padding: 8px 12px; font-size: 9px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
 .disclaimer strong { color: var(--red); }
-.nyse-alert { background: linear-gradient(135deg, rgba(240,192,64,0.07), rgba(255,140,66,0.03)); border: 1px solid rgba(240,192,64,0.2); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 12px; flex-wrap: wrap; }
-.nyse-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
-.nyse-countdown { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 0.04em; line-height: 1; }
-.nyse-info { font-size: 10px; color: var(--muted); margin-top: 3px; }
-.nyse-badge { background: rgba(0,0,0,0.3); border: 1px solid rgba(240,192,64,0.18); border-radius: 8px; padding: 8px 14px; text-align: center; flex-shrink: 0; }
+
+/* NYSE COUNTDOWN */
+.nyse-alert { background: linear-gradient(135deg, rgba(240,192,64,0.07), rgba(255,140,66,0.03)); border: 1px solid rgba(240,192,64,0.2); border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 10px; flex-wrap: wrap; }
+.nyse-label { font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+.nyse-countdown { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.04em; line-height: 1; }
+.nyse-info { font-size: 9px; color: var(--muted); margin-top: 2px; }
+.nyse-badge { background: rgba(0,0,0,0.3); border: 1px solid rgba(240,192,64,0.18); border-radius: 8px; padding: 7px 12px; text-align: center; flex-shrink: 0; }
 .nyse-badge-label { font-size: 8px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-.nyse-badge-time { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--gold); }
-.market-banner { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 12px; }
+.nyse-badge-time { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gold); }
+
+/* MARKET STATUS */
+.market-banner { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 10px; }
 @media (max-width: 600px) { .market-banner { grid-template-columns: repeat(3, 1fr); } }
-.market-card { background: var(--panel); border: 1px solid var(--border2); border-radius: 10px; padding: 10px 12px; position: relative; overflow: hidden; }
+.market-card { background: var(--panel); border: 1px solid var(--border2); border-radius: 8px; padding: 8px 10px; position: relative; overflow: hidden; }
 .market-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
 .market-card.open::before { background: var(--green); } .market-card.closed::before { background: var(--red); } .market-card.pre::before { background: var(--gold); }
-.market-label { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.market-name { font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-.market-status { font-size: 9px; font-weight: 700; letter-spacing: 0.06em; }
+.market-label { font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.market-name { font-family: 'IBM Plex Sans', sans-serif; font-size: 10px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.market-status { font-size: 8px; font-weight: 700; letter-spacing: 0.06em; }
 .market-status.open { color: var(--green); } .market-status.closed { color: var(--red); } .market-status.pre { color: var(--gold); }
-.market-countdown { font-size: 8px; color: var(--muted); margin-top: 2px; }
-.main-grid { display: grid; grid-template-columns: 1fr 310px; gap: 14px; }
-@media (max-width: 880px) { .main-grid { grid-template-columns: 1fr; } }
-.panel { background: var(--panel); border: 1px solid var(--border2); border-radius: 14px; overflow: hidden; margin-bottom: 14px; }
-.panel-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--panel2); }
-.panel-title { display: flex; align-items: center; gap: 8px; font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--text); }
-.panel-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.panel-badge { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; border: 1px solid; }
-.panel-body { padding: 14px; }
-.opp-item { border: 1px solid var(--border2); border-radius: 11px; padding: 13px; margin-bottom: 10px; position: relative; overflow: hidden; animation: slideIn 0.3s ease both; }
-.opp-item:last-child { margin-bottom: 0; }
-@keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
-.opp-item:nth-child(1) { animation-delay: 0.04s; } .opp-item:nth-child(2) { animation-delay: 0.09s; } .opp-item:nth-child(3) { animation-delay: 0.14s; } .opp-item:nth-child(4) { animation-delay: 0.19s; } .opp-item:nth-child(5) { animation-delay: 0.24s; }
-.opp-rank { position: absolute; top: 8px; right: 12px; font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: var(--muted2); line-height: 1; pointer-events: none; }
-.opp-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; }
-.opp-tag { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-.tag-stock { background: rgba(77,166,255,0.12); color: var(--blue); border: 1px solid rgba(77,166,255,0.22); }
-.tag-metal { background: rgba(240,192,64,0.12); color: var(--gold); border: 1px solid rgba(240,192,64,0.22); }
-.tag-crypto { background: rgba(157,122,255,0.12); color: var(--purple); border: 1px solid rgba(157,122,255,0.22); }
-.tag-commodity { background: rgba(255,140,66,0.12); color: var(--orange); border: 1px solid rgba(255,140,66,0.22); }
-.tag-etf { background: rgba(0,229,160,0.12); color: var(--green); border: 1px solid rgba(0,229,160,0.22); }
-.tag-energy { background: rgba(255,77,109,0.10); color: var(--red); border: 1px solid rgba(255,77,109,0.20); }
-.tag-defense { background: rgba(255,77,109,0.10); color: var(--red); border: 1px solid rgba(255,77,109,0.20); }
-.opp-name { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); }
-.opp-ticker { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
-.opp-reason { font-size: 11px; color: var(--muted); line-height: 1.6; margin-bottom: 7px; }
-.opp-metrics { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 5px; }
-.metric-label { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-.metric-value { font-size: 11px; font-weight: 700; }
-.bull { color: var(--green); } .bear { color: var(--red); } .neutral { color: var(--gold); }
-.opp-action { display: inline-block; font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; padding: 3px 9px; border-radius: 4px; margin-top: 4px; }
-.action-long { background: rgba(0,229,160,0.10); color: var(--green); border: 1px solid rgba(0,229,160,0.28); }
-.action-watch { background: rgba(240,192,64,0.10); color: var(--gold); border: 1px solid rgba(240,192,64,0.28); }
-.action-short { background: rgba(255,77,109,0.10); color: var(--red); border: 1px solid rgba(255,77,109,0.28); }
-.opp-catalyst { font-size: 10px; color: var(--muted); margin-top: 5px; }
-.pos-item { border-bottom: 1px solid var(--border); padding: 11px 0; animation: slideIn 0.3s ease both; }
-.pos-item:last-child { border-bottom: none; padding-bottom: 0; } .pos-item:first-child { padding-top: 0; }
-.pos-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-.pos-name { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--text); }
-.pos-sub { font-size: 9px; color: var(--muted); letter-spacing: 0.06em; margin-top: 2px; }
-.pos-direction { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; flex-shrink: 0; }
-.dir-long { background: rgba(0,229,160,0.10); color: var(--green); } .dir-short { background: rgba(255,77,109,0.10); color: var(--red); }
-.pos-levels { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 7px; }
-.pos-level { background: var(--panel2); border-radius: 6px; padding: 5px 8px; }
-.pos-level-label { font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
-.pos-level-val { font-size: 11px; font-weight: 700; }
-.entry-val { color: var(--blue); } .tp-val { color: var(--green); } .sl-val { color: var(--red); }
-.pos-note { font-size: 10px; color: var(--muted); margin-top: 5px; line-height: 1.5; }
-.notif-btn { background: var(--panel2); border: 1px solid var(--border2); border-radius: 10px; padding: 11px 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; width: 100%; color: var(--text); font-family: 'IBM Plex Mono', monospace; font-size: 11px; margin-bottom: 10px; gap: 10px; transition: border-color 0.2s; }
-.notif-btn:hover { border-color: var(--gold); }
-.notif-status { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; flex-shrink: 0; }
-.notif-on { background: rgba(0,229,160,0.10); color: var(--green); border: 1px solid rgba(0,229,160,0.25); }
-.notif-off { background: rgba(85,85,112,0.12); color: var(--muted); border: 1px solid var(--border2); }
-.notif-hint { font-size: 10px; color: var(--muted); line-height: 1.6; }
-.spinner-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; gap: 12px; }
-.spinner { width: 30px; height: 30px; border: 2px solid var(--border2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.market-countdown { font-size: 7px; color: var(--muted); margin-top: 1px; }
+
+/* TABS */
+.tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.tab-btn { background: var(--panel2); border: 1px solid var(--border2); border-radius: 8px; padding: 7px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); cursor: pointer; letter-spacing: 0.06em; transition: all 0.2s; white-space: nowrap; }
+.tab-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(240,192,64,0.07); }
+.tab-btn:hover { border-color: var(--muted); color: var(--text); }
+
+/* PRICE GRID */
+.price-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; margin-bottom: 12px; }
+@media (max-width: 500px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.price-card { background: var(--panel); border: 1px solid var(--border2); border-radius: 10px; padding: 12px; position: relative; overflow: hidden; transition: border-color 0.2s; animation: fadeUp 0.3s ease both; }
+.price-card:hover { border-color: var(--border); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.price-card-tag { font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; font-weight: 700; display: inline-block; margin-bottom: 6px; }
+.tag-crypto  { background: rgba(157,122,255,0.12); color: var(--purple); border: 1px solid rgba(157,122,255,0.2); }
+.tag-stock   { background: rgba(77,166,255,0.12);  color: var(--blue);   border: 1px solid rgba(77,166,255,0.2); }
+.tag-metal   { background: rgba(240,192,64,0.12);  color: var(--gold);   border: 1px solid rgba(240,192,64,0.2); }
+.tag-energy  { background: rgba(255,77,109,0.10);  color: var(--red);    border: 1px solid rgba(255,77,109,0.2); }
+.tag-commodity { background: rgba(255,140,66,0.12); color: var(--orange); border: 1px solid rgba(255,140,66,0.2); }
+.tag-index   { background: rgba(0,229,160,0.12);   color: var(--green);  border: 1px solid rgba(0,229,160,0.2); }
+.tag-fx      { background: rgba(85,85,112,0.2);    color: var(--muted);  border: 1px solid var(--border2); }
+.tag-defense { background: rgba(255,77,109,0.10);  color: var(--red);    border: 1px solid rgba(255,77,109,0.2); }
+
+.price-card-name { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.price-card-ticker { font-size: 9px; color: var(--muted); margin-bottom: 8px; }
+.price-card-price { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.02em; color: var(--text); line-height: 1; margin-bottom: 4px; }
+.price-card-change { font-size: 10px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.change-up { color: var(--green); } .change-down { color: var(--red); } .change-flat { color: var(--muted); }
+.price-card-extra { font-size: 8px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.price-loading { color: var(--muted); font-size: 10px; display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+.mini-spin { width: 10px; height: 10px; border: 1px solid var(--border2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.spinner-text { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-.last-update { font-size: 9px; color: var(--muted); text-align: right; margin-bottom: 8px; letter-spacing: 0.06em; }
+
+/* STATUS BAR */
+.status-bar { display: flex; align-items: center; justify-content: space-between; font-size: 9px; color: var(--muted); margin-bottom: 8px; flex-wrap: wrap; gap: 6px; }
+.status-indicator { display: flex; align-items: center; gap: 5px; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.status-dot.live { background: var(--green); animation: pulse 2s infinite; }
+.status-dot.loading { background: var(--gold); animation: pulse 0.8s infinite; }
+.status-dot.error { background: var(--red); }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.error-note { background: rgba(255,77,109,0.06); border: 1px solid rgba(255,77,109,0.15); border-radius: 6px; padding: 6px 10px; font-size: 9px; color: var(--red); margin-bottom: 8px; display: none; }
 </style>
 </head>
 <body>
 <div class="container">
+
+  <!-- TOPBAR -->
   <div class="topbar">
-    <div><div class="brand-name">MARKET INTEL</div><div class="brand-sub">Dashboard Investiții · AI-Powered · Mixt</div></div>
+    <div>
+      <div class="brand-name">MARKET INTEL</div>
+      <div class="brand-sub">Prețuri Live · Date Reale · Actualizat la fiecare Refresh</div>
+    </div>
     <div class="topbar-right">
-      <div><div class="clock-time" id="clock">--:--:--</div><div class="clock-date" id="dateDisp">-- --- ----</div></div>
-      <button class="refresh-btn" id="refreshBtn" onclick="refreshAll()">⟳ Refresh</button>
+      <div>
+        <div class="clock-time" id="clock">--:--:--</div>
+        <div class="clock-date" id="dateDisp">-- --- ----</div>
+      </div>
+      <button class="refresh-btn" id="refreshBtn" onclick="refreshAll()">⟳ Refresh Live</button>
     </div>
   </div>
-  <div class="disclaimer"><strong>⚠ DISCLAIMER:</strong> Conținut informativ. Nu constituie sfat financiar certificat. Investițiile implică riscuri, inclusiv pierderea capitalului. <strong>Deciziile îți aparțin integral.</strong></div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>⚠ DISCLAIMER:</strong> Date live de piață cu întârziere de până la 15 min pentru acțiuni. Nu constituie sfat financiar. Investițiile implică riscuri. <strong>Deciziile îți aparțin integral.</strong>
+  </div>
+
+  <!-- NYSE COUNTDOWN -->
   <div class="nyse-alert">
     <div>
       <div class="nyse-label">⏰ Deschidere NYSE · New York</div>
       <div class="nyse-countdown" id="nyseCountdown" style="color:var(--gold)">--:--:--</div>
       <div class="nyse-info" id="nyseInfo">Se calculează...</div>
     </div>
-    <div class="nyse-badge"><div class="nyse-badge-label">Oră deschidere</div><div class="nyse-badge-time">15:30 RO</div><div style="font-size:8px;color:var(--muted);margin-top:2px;">Luni – Vineri</div></div>
+    <div class="nyse-badge">
+      <div class="nyse-badge-label">Deschidere</div>
+      <div class="nyse-badge-time">15:30 RO</div>
+      <div style="font-size:7px;color:var(--muted);margin-top:2px;">Luni–Vineri</div>
+    </div>
   </div>
+
+  <!-- MARKETS -->
   <div class="market-banner" id="marketBanner"></div>
-  <div class="last-update" id="lastUpdate"></div>
-  <div class="main-grid">
-    <div>
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title"><div class="panel-dot" style="background:var(--gold)"></div>TOP 5 OPORTUNITĂȚI</div>
-          <span class="panel-badge" style="color:var(--gold);border-color:rgba(240,192,64,0.28)">ZILNIC · MIXT</span>
-        </div>
-        <div class="panel-body" id="oppPanel"><div class="spinner-wrap"><div class="spinner"></div><div class="spinner-text">Analizez piețele...</div></div></div>
-      </div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar">
+    <div class="status-indicator">
+      <div class="status-dot loading" id="statusDot"></div>
+      <span id="statusText">Se încarcă datele live...</span>
     </div>
-    <div>
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title"><div class="panel-dot" style="background:var(--green)"></div>POZIȚII POTENȚIALE</div>
-          <span class="panel-badge" style="color:var(--green);border-color:rgba(0,229,160,0.28)">INTRADAY / SWING</span>
-        </div>
-        <div class="panel-body" id="posPanel"><div class="spinner-wrap"><div class="spinner"></div><div class="spinner-text">Generez niveluri...</div></div></div>
-      </div>
-      <div class="panel">
-        <div class="panel-header"><div class="panel-title"><div class="panel-dot" style="background:var(--blue)"></div>NOTIFICĂRI NYSE</div></div>
-        <div class="panel-body">
-          <button class="notif-btn" onclick="requestNotif()"><span>🔔 Alertă browser</span><span class="notif-status notif-off" id="notifStatus">INACTIV</span></button>
-          <div class="notif-hint">Primești alertă cu <strong style="color:var(--gold)">30 min</strong> înainte de deschiderea NYSE (15:00 RO).</div>
-        </div>
-      </div>
-    </div>
+    <span id="lastUpdate"></span>
   </div>
+
+  <div class="error-note" id="errorNote"></div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('crypto')">🔮 Crypto</button>
+    <button class="tab-btn" onclick="showTab('stocks')">📈 Acțiuni</button>
+    <button class="tab-btn" onclick="showTab('metals')">🥇 Metale</button>
+    <button class="tab-btn" onclick="showTab('energy')">⛽ Energie & Mărfuri</button>
+    <button class="tab-btn" onclick="showTab('fx')">💱 FX & Indici</button>
+  </div>
+
+  <!-- PRICE GRIDS -->
+  <div id="tab-crypto" class="price-grid"></div>
+  <div id="tab-stocks" class="price-grid" style="display:none"></div>
+  <div id="tab-metals" class="price-grid" style="display:none"></div>
+  <div id="tab-energy" class="price-grid" style="display:none"></div>
+  <div id="tab-fx" class="price-grid" style="display:none"></div>
+
 </div>
+
 <script>
-function updateClock(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('ro-RO',{hour12:false});document.getElementById('dateDisp').textContent=n.toLocaleDateString('ro-RO',{weekday:'short',day:'numeric',month:'long'});}
-setInterval(updateClock,1000);updateClock();
-const MARKETS=[{name:'NYSE',label:'New York',tz:'America/New_York',open:9.5,close:16},{name:'LSE',label:'Londra',tz:'Europe/London',open:8,close:16.5},{name:'XETRA',label:'Frankfurt',tz:'Europe/Berlin',open:9,close:17.5},{name:'TSE',label:'Tokyo',tz:'Asia/Tokyo',open:9,close:15.5},{name:'CRYPTO',label:'Crypto',tz:null,open:0,close:24}];
-function getStatus(m){if(!m.tz)return{s:'open',label:'DESCHIS 24/7',cd:''};const l=new Date(new Date().toLocaleString('en-US',{timeZone:m.tz}));const h=l.getHours()+l.getMinutes()/60;const d=l.getDay();if(d===0||d===6)return{s:'closed',label:'ÎNCHIS',cd:'Weekend'};if(h>=m.open&&h<m.close){const r=m.close-h;return{s:'open',label:'DESCHIS',cd:`Închide ~${Math.floor(r)}h ${Math.floor((r%1)*60)}m`};}if(h<m.open){const u=m.open-h;return{s:'pre',label:'PRE-MKT',cd:`Deschide ~${Math.floor(u)}h ${Math.floor((u%1)*60)}m`};}return{s:'closed',label:'ÎNCHIS',cd:'Redeschide mâine'};}
-function renderMarkets(){document.getElementById('marketBanner').innerHTML=MARKETS.map(m=>{const{s,label,cd}=getStatus(m);return`<div class="market-card ${s}"><div class="market-label">${m.label}</div><div class="market-name">${m.name}</div><div class="market-status ${s}">${label}</div>${cd?`<div class="market-countdown">${cd}</div>`:''}</div>`;}).join('');}
-function pad(n){return String(Math.floor(n)).padStart(2,'0');}
-function updateNYSE(){const ny=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));const d=ny.getDay();const c=ny.getHours()*3600+ny.getMinutes()*60+ny.getSeconds();const o=34200,cl=57600;const iw=d===0||d===6;const io=!iw&&c>=o&&c<cl;const el=document.getElementById('nyseCountdown');const inf=document.getElementById('nyseInfo');if(io){const r=cl-c;el.textContent=`${pad(r/3600)}:${pad((r%3600)/60)}:${pad(r%60)}`;el.style.color='var(--green)';inf.textContent='🟢 NYSE DESCHIS — timp rămas până la închidere';}else{let u;if(iw){const dm=((8-d)%7)||7;u=dm*86400-c+o;}else if(c<o){u=o-c;}else{u=86400-c+o;}el.textContent=`${pad(u/3600)}:${pad((u%3600)/60)}:${pad(u%60)}`;el.style.color='var(--gold)';inf.textContent=iw?'⏸ Piața închisă — weekend. Redeschide Luni 15:30 (RO)':'⏰ Timp până la deschidere NYSE (15:30 ora României)';if(u<=1800&&u>1798&&Notification.permission==='granted'){new Notification('📈 NYSE deschide în 30 min!',{body:'Pregătește-ți pozițiile pentru sesiunea americană.'});}}}
-setInterval(()=>{renderMarkets();updateNYSE();},1000);renderMarkets();updateNYSE();
-function requestNotif(){if(!('Notification'in window)){alert('Browserul nu suportă notificări.');return;}Notification.requestPermission().then(p=>{const el=document.getElementById('notifStatus');if(p==='granted'){el.textContent='ACTIV';el.className='notif-status notif-on';new Notification('✅ Notificări activate!',{body:'Vei fi alertat 30 min înainte de deschiderea NYSE.'});}else{el.textContent='BLOCAT';el.className='notif-status notif-off';}});}
-if(typeof Notification!=='undefined'&&Notification.permission==='granted'){const el=document.getElementById('notifStatus');el.textContent='ACTIV';el.className='notif-status notif-on';}
-const OPP=[{name:'Palantir Technologies',ticker:'PLTR',type:'stock',reason:'Contracte AI guvernamentale în creștere; NATO și US DoD extind utilizarea platformei AIP. Momentum tehnic puternic post-breakout.',sentiment:'bullish',timeframe:'swing',risk:'mediu',catalyst:'Raport Q1 2026 — estimări depășite consecutiv.'},{name:'Nvidia Corporation',ticker:'NVDA',type:'stock',reason:'Dominanță continuă în AI chips; cerere Blackwell depășește oferta. Premium valoric justificat de creștere EPS accelerată.',sentiment:'bullish',timeframe:'swing',risk:'mediu',catalyst:'Confirmări comenzi datacenter H2 2026.'},{name:'Rheinmetall AG',ticker:'RHM',type:'defense',reason:'Bugetele NATO la maxime istorice; principal beneficiar European. Revenue guidance revizuit în sus de 3 ori consecutiv.',sentiment:'bullish',timeframe:'swing',risk:'mediu',catalyst:'Noi contracte muniție & vehicule blindate.'},{name:'ExxonMobil',ticker:'XOM',type:'energy',reason:'Prețul petrolului susținut de tensiunile geopolitice. Marje ridicate și program masiv de buyback.',sentiment:'neutral',timeframe:'swing',risk:'scăzut',catalyst:'Decizia OPEC+ privind producția.'},{name:'RTX Corporation',ticker:'RTX',type:'defense',reason:'Carnet de comenzi record; sisteme Patriot în cerere maximă globală. Dividend stabil și creșteri anuale.',sentiment:'bullish',timeframe:'swing',risk:'scăzut',catalyst:'Pachete ajutor militar SUA includ sisteme RTX.'},{name:'Microsoft',ticker:'MSFT',type:'stock',reason:'Azure AI în creștere accelerată; Copilot generează venituri incrementale. Poziție defensivă cu upside AI.',sentiment:'bullish',timeframe:'swing',risk:'scăzut',catalyst:'Azure growth rate Q2 FY2026.'},{name:'NextEra Energy',ticker:'NEE',type:'energy',reason:'Lider energie regenerabilă SUA; cerere masivă electricitate AI datacenters. Dividend atractiv.',sentiment:'bullish',timeframe:'swing',risk:'scăzut',catalyst:'Parteneriate datacenter energie curată.'},{name:'Aur (Gold Spot)',ticker:'XAU/USD',type:'metal',reason:'Tensiuni geopolitice și incertitudine macro mențin cererea de safe haven. Bănci centrale cumpără record.',sentiment:'bullish',timeframe:'mixt',risk:'scăzut',catalyst:'Fed dovish pivot — bullish puternic aur.'},{name:'Argint (Silver)',ticker:'XAG/USD',type:'metal',reason:'Subestimat față de aur; ratio Au/Ag la extreme istorice. Cerere industrială solare/EV în creștere.',sentiment:'bullish',timeframe:'swing',risk:'mediu',catalyst:'Ratio Au/Ag extrem — mean reversion probabilă.'},{name:'Cupru (Copper)',ticker:'HG1!',type:'metal',reason:'Metal critic tranziție energetică și AI. Ofertă limitată Chile/Peru, cerere China în revenire.',sentiment:'bullish',timeframe:'swing',risk:'mediu',catalyst:'PMI Manufacturing China — indicator cheie.'},{name:'Bitcoin',ticker:'BTC/USD',type:'crypto',reason:'Ciclul post-halving activ; ETF-uri spot acumulează continuu. Instituționalizare accelerată.',sentiment:'bullish',timeframe:'swing',risk:'ridicat',catalyst:'Decizie Fed rate — impact direct BTC.'},{name:'Ethereum',ticker:'ETH/USD',type:'crypto',reason:'Upgrade-uri scalabilitate și DeFi/L2 în creștere. Subestimat față de BTC în ciclul curent.',sentiment:'neutral',timeframe:'swing',risk:'ridicat',catalyst:'ETF ETH cu staking — catalizator major pending.'},{name:'Petrol Brent',ticker:'BZ1!',type:'commodity',reason:'Tensiuni Orientul Mijlociu și OPEC+ controlat. Sezon driving Q2 — cerere sezonieră pozitivă.',sentiment:'neutral',timeframe:'intraday',risk:'mediu',catalyst:'Rapoarte EIA stocuri săptămânale.'},{name:'Grâu (Wheat)',ticker:'ZW1!',type:'commodity',reason:'Conflictul Ucraina perturbă exporturile Mării Negre. Meteo nefavorabil SUA și India reduce oferta.',sentiment:'bullish',timeframe:'swing',risk:'ridicat',catalyst:'Raport WASDE lunar USDA.'},{name:'VanEck Defense ETF',ticker:'DFNS',type:'etf',reason:'Expunere diversificată apărare global. Creșterea bugetelor NATO garantează venituri stabile.',sentiment:'bullish',timeframe:'swing',risk:'scăzut',catalyst:'Summit NATO — angajamente bugetare noi.'},{name:'SPDR Gold (GLD)',ticker:'GLD',type:'etf',reason:'Cel mai lichid ETF aur; flux instituțional pozitiv. Hedging optim inflație și volatilitate.',sentiment:'bullish',timeframe:'mixt',risk:'scăzut',catalyst:'Date CPI și decizie Fed — impact direct.'},{name:'iShares Global Energy',ticker:'IXC',type:'etf',reason:'Expunere globală energie diversificată. Randament dividend superior pieței.',sentiment:'neutral',timeframe:'swing',risk:'scăzut',catalyst:'Mișcări prețuri petrol și gaze globale.'}];
-const POS=[{name:'Aur Spot',ticker:'XAU/USD',direction:'LONG',entry:'3.050–3.080',tp:'3.150',sl:'2.990',type:'swing',note:'Trend bullish confirmat. Intrare Fibonacci 38.2%. SL sub suportul cheie.'},{name:'Nvidia',ticker:'NVDA',direction:'LONG',entry:'118–122',tp:'135',sl:'112',type:'swing',note:'Breakout cu volume din consolidare. Catalizator: comenzi datacenter.'},{name:'EUR/USD',ticker:'EUR/USD',direction:'SHORT',entry:'1.085–1.088',tp:'1.065',sl:'1.095',type:'swing',note:'USD puternic pe macro solid. Divergență BCE vs Fed.'},{name:'Bitcoin',ticker:'BTC/USD',direction:'LONG',entry:'78.000–81.000',tp:'92.000',sl:'73.500',type:'swing',note:'Suport 80k ținut. Acumulare ETF continuă. Risc: macro advers.'},{name:'Petrol Brent',ticker:'BZ1!',direction:'LONG',entry:'82–84',tp:'90',sl:'78',type:'intraday',note:'Rebound tehnic de la suport. Catalizator: EIA stocuri sub așteptări.'},{name:'Rheinmetall AG',ticker:'RHM',direction:'LONG',entry:'870–890',tp:'980',sl:'820',type:'swing',note:'Trend secular bullish apărare. Pullback la EMA20.'},{name:'Argint Spot',ticker:'XAG/USD',direction:'LONG',entry:'31.5–32.5',tp:'36',sl:'29.8',type:'swing',note:'Ratio Au/Ag la extreme — mean reversion. Cerere industrială susținută.'},{name:'S&P 500 (SPY)',ticker:'SPY',direction:'SHORT',entry:'565–570',tp:'540',sl:'580',type:'intraday',note:'Rezistență majoră. RSI supracumpărat. Hedge pentru portofoliu long.'},{name:'GBP/USD',ticker:'GBP/USD',direction:'SHORT',entry:'1.295–1.305',tp:'1.265',sl:'1.318',type:'swing',note:'Date UK slabe. BOE dovish vs Fed. Trend descendent confirmat.'},{name:'Cupru',ticker:'HG1!',direction:'LONG',entry:'4.50–4.60',tp:'4.95',sl:'4.28',type:'swing',note:'Cerere China în revenire; ofertă globală constrânsă. Metal strategic AI.'}];
-function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
-function renderOpp(o){document.getElementById('oppPanel').innerHTML=o.map((x,i)=>{const sc=x.sentiment==='bullish'?'bull':x.sentiment==='bearish'?'bear':'neutral';const sl=x.sentiment==='bullish'?'▲ BULLISH':x.sentiment==='bearish'?'▼ BEARISH':'◆ NEUTRAL';const ac=x.sentiment==='bullish'?'action-long':x.sentiment==='bearish'?'action-short':'action-watch';const al=x.sentiment==='bullish'?'⟶ LONG / CUMPĂRARE':x.sentiment==='bearish'?'⟶ SHORT / VÂNZARE':'◎ MONITORIZARE';const rc=x.risk==='scăzut'?'bull':x.risk==='ridicat'?'bear':'neutral';return`<div class="opp-item"><div class="opp-rank">${i+1}</div><div class="opp-top"><span class="opp-tag tag-${x.type}">${x.type.toUpperCase()}</span><div><div class="opp-name">${x.name}</div><div class="opp-ticker">${x.ticker}</div></div></div><div class="opp-reason">${x.reason}</div><div class="opp-metrics"><div><div class="metric-label">Sentiment</div><div class="metric-value ${sc}">${sl}</div></div><div><div class="metric-label">Timeframe</div><div class="metric-value neutral">${x.timeframe}</div></div><div><div class="metric-label">Risc</div><div class="metric-value ${rc}">${x.risk}</div></div></div>${x.catalyst?`<div class="opp-catalyst">💡 ${x.catalyst}</div>`:''}<span class="opp-action ${ac}">${al}</span></div>`;}).join('');}
-function renderPos(p){document.getElementById('posPanel').innerHTML=p.map((x,i)=>`<div class="pos-item" style="animation-delay:${i*0.07}s"><div class="pos-header"><div><div class="pos-name">${x.name} <span style="color:var(--muted);font-size:10px;">${x.ticker}</span></div><div class="pos-sub">${x.type.toUpperCase()}</div></div><span class="pos-direction dir-${x.direction.toLowerCase()}">${x.direction}</span></div><div class="pos-levels"><div class="pos-level"><div class="pos-level-label">Entry</div><div class="pos-level-val entry-val">${x.entry}</div></div><div class="pos-level"><div class="pos-level-label">Take Profit</div><div class="pos-level-val tp-val">${x.tp}</div></div><div class="pos-level"><div class="pos-level-label">Stop Loss</div><div class="pos-level-val sl-val">${x.sl}</div></div></div><div class="pos-note">${x.note}</div></div>`).join('');}
-function refreshAll(){const b=document.getElementById('refreshBtn');b.disabled=true;b.textContent='⟳ Se actualizează...';document.getElementById('oppPanel').innerHTML='<div class="spinner-wrap"><div class="spinner"></div><div class="spinner-text">Selectez oportunități...</div></div>';document.getElementById('posPanel').innerHTML='<div class="spinner-wrap"><div class="spinner"></div><div class="spinner-text">Generez poziții...</div></div>';setTimeout(()=>{renderOpp(shuffle(OPP).slice(0,5));renderPos(shuffle(POS).slice(0,4));const n=new Date();document.getElementById('lastUpdate').textContent=`Actualizat: ${n.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}`;b.disabled=false;b.textContent='⟳ Refresh';},900);}
-window.addEventListener('load',refreshAll);
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
+const FINNHUB_KEY = 'FINNHUB_KEY_AICI'; // <-- înlocuiește cu noul tău API key
+
+// ─── CLOCK ───────────────────────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('ro-RO', { hour12: false });
+  document.getElementById('dateDisp').textContent = now.toLocaleDateString('ro-RO', { weekday: 'short', day: 'numeric', month: 'long' });
+}
+setInterval(updateClock, 1000); updateClock();
+
+// ─── MARKETS ─────────────────────────────────────────────────────────────────
+const MARKETS = [
+  { name: 'NYSE', label: 'New York', tz: 'America/New_York', open: 9.5, close: 16 },
+  { name: 'LSE',  label: 'Londra',   tz: 'Europe/London',   open: 8,   close: 16.5 },
+  { name: 'XETRA',label: 'Frankfurt',tz: 'Europe/Berlin',   open: 9,   close: 17.5 },
+  { name: 'TSE',  label: 'Tokyo',    tz: 'Asia/Tokyo',      open: 9,   close: 15.5 },
+  { name: 'CRYPTO',label: 'Crypto',  tz: null,              open: 0,   close: 24 },
+];
+function getStatus(m) {
+  if (!m.tz) return { s: 'open', label: 'DESCHIS 24/7', cd: '' };
+  const local = new Date(new Date().toLocaleString('en-US', { timeZone: m.tz }));
+  const h = local.getHours() + local.getMinutes() / 60;
+  const day = local.getDay();
+  if (day === 0 || day === 6) return { s: 'closed', label: 'ÎNCHIS', cd: 'Weekend' };
+  if (h >= m.open && h < m.close) { const r = m.close - h; return { s: 'open', label: 'DESCHIS', cd: `Închide ~${Math.floor(r)}h ${Math.floor((r%1)*60)}m` }; }
+  if (h < m.open) { const u = m.open - h; return { s: 'pre', label: 'PRE-MKT', cd: `Deschide ~${Math.floor(u)}h ${Math.floor((u%1)*60)}m` }; }
+  return { s: 'closed', label: 'ÎNCHIS', cd: 'Redeschide mâine' };
+}
+function renderMarkets() {
+  document.getElementById('marketBanner').innerHTML = MARKETS.map(m => {
+    const { s, label, cd } = getStatus(m);
+    return `<div class="market-card ${s}"><div class="market-label">${m.label}</div><div class="market-name">${m.name}</div><div class="market-status ${s}">${label}</div>${cd ? `<div class="market-countdown">${cd}</div>` : ''}</div>`;
+  }).join('');
+}
+
+// ─── NYSE COUNTDOWN ───────────────────────────────────────────────────────────
+function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+function updateNYSE() {
+  const ny = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+  const d = ny.getDay(), c = ny.getHours() * 3600 + ny.getMinutes() * 60 + ny.getSeconds();
+  const o = 34200, cl = 57600;
+  const iw = d === 0 || d === 6, io = !iw && c >= o && c < cl;
+  const el = document.getElementById('nyseCountdown'), inf = document.getElementById('nyseInfo');
+  if (io) {
+    const r = cl - c;
+    el.textContent = `${pad(r/3600)}:${pad((r%3600)/60)}:${pad(r%60)}`;
+    el.style.color = 'var(--green)';
+    inf.textContent = '🟢 NYSE DESCHIS — timp rămas până la închidere';
+  } else {
+    let u;
+    if (iw) { const dm = ((8-d)%7)||7; u = dm*86400-c+o; }
+    else if (c < o) { u = o - c; }
+    else { u = 86400 - c + o; }
+    el.textContent = `${pad(u/3600)}:${pad((u%3600)/60)}:${pad(u%60)}`;
+    el.style.color = 'var(--gold)';
+    inf.textContent = iw ? '⏸ Weekend — redeschide Luni 15:30 (RO)' : '⏰ Timp până la deschidere NYSE (15:30 ora României)';
+    if (u <= 1800 && u > 1798 && Notification.permission === 'granted') new Notification('📈 NYSE deschide în 30 min!', { body: 'Pregătește-ți pozițiile.' });
+  }
+}
+setInterval(() => { renderMarkets(); updateNYSE(); }, 1000);
+renderMarkets(); updateNYSE();
+
+// ─── TABS ─────────────────────────────────────────────────────────────────────
+let activeTab = 'crypto';
+function showTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.remove('active'));
+  event.target.classList.add('active');
+  ['crypto','stocks','metals','energy','fx'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === tab ? 'grid' : 'none';
+  });
+  activeTab = tab;
+}
+
+// ─── PRICE CARD ───────────────────────────────────────────────────────────────
+function fmtPrice(p, decimals) {
+  if (!p && p !== 0) return '---';
+  if (p >= 1000) return p.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  if (p >= 10) return p.toFixed(2);
+  if (p >= 1) return p.toFixed(3);
+  return p.toFixed(decimals || 5);
+}
+
+function fmtChange(c) {
+  if (c === null || c === undefined) return '<span class="change-flat">-- %</span>';
+  const cls = c > 0 ? 'change-up' : c < 0 ? 'change-down' : 'change-flat';
+  const sign = c > 0 ? '▲' : c < 0 ? '▼' : '◆';
+  return `<span class="${cls}">${sign} ${Math.abs(c).toFixed(2)}%</span>`;
+}
+
+function makeLoadingCard(tag, name, ticker) {
+  return `<div class="price-card">
+    <span class="price-card-tag tag-${tag}">${tag.toUpperCase()}</span>
+    <div class="price-card-name">${name}</div>
+    <div class="price-card-ticker">${ticker}</div>
+    <div class="price-loading"><div class="mini-spin"></div> Se încarcă...</div>
+  </div>`;
+}
+
+function makeCard(tag, name, ticker, price, change24h, extra) {
+  const currency = ['stock','index','fx'].includes(tag) ? '$' : tag === 'metal' || tag === 'energy' || tag === 'commodity' ? '$' : '$';
+  return `<div class="price-card">
+    <span class="price-card-tag tag-${tag}">${tag === 'defense' ? 'APĂRARE' : tag.toUpperCase()}</span>
+    <div class="price-card-name">${name}</div>
+    <div class="price-card-ticker">${ticker}</div>
+    <div class="price-card-price">${currency}${fmtPrice(price)}</div>
+    <div class="price-card-change">${fmtChange(change24h)}</div>
+    ${extra ? `<div class="price-card-extra">${extra}</div>` : ''}
+  </div>`;
+}
+
+function makeErrCard(tag, name, ticker, msg) {
+  return `<div class="price-card" style="border-color:rgba(255,77,109,0.2)">
+    <span class="price-card-tag tag-${tag}">${tag.toUpperCase()}</span>
+    <div class="price-card-name">${name}</div>
+    <div class="price-card-ticker">${ticker}</div>
+    <div class="price-loading" style="color:var(--red)">⚠ ${msg || 'Eroare'}</div>
+  </div>`;
+}
+
+// ─── STATUS ───────────────────────────────────────────────────────────────────
+function setStatus(state, text) {
+  const dot = document.getElementById('statusDot');
+  dot.className = 'status-dot ' + state;
+  document.getElementById('statusText').textContent = text;
+}
+
+// ─── CRYPTO — CoinGecko (fără API key) ───────────────────────────────────────
+const CRYPTO_IDS = {
+  'bitcoin': { name: 'Bitcoin', ticker: 'BTC/USD' },
+  'ethereum': { name: 'Ethereum', ticker: 'ETH/USD' },
+  'solana': { name: 'Solana', ticker: 'SOL/USD' },
+  'binancecoin': { name: 'BNB', ticker: 'BNB/USD' },
+  'ripple': { name: 'XRP', ticker: 'XRP/USD' },
+  'dogecoin': { name: 'Dogecoin', ticker: 'DOGE/USD' },
+  'shiba-inu': { name: 'Shiba Inu', ticker: 'SHIB/USD' },
+  'cardano': { name: 'Cardano', ticker: 'ADA/USD' },
+  'avalanche-2': { name: 'Avalanche', ticker: 'AVAX/USD' },
+  'polkadot': { name: 'Polkadot', ticker: 'DOT/USD' },
+  'chainlink': { name: 'Chainlink', ticker: 'LINK/USD' },
+  'uniswap': { name: 'Uniswap', ticker: 'UNI/USD' },
+};
+
+async function fetchCrypto() {
+  const ids = Object.keys(CRYPTO_IDS).join(',');
+  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('CoinGecko error ' + res.status);
+  return res.json();
+}
+
+function renderCrypto(data) {
+  const html = Object.entries(CRYPTO_IDS).map(([id, info]) => {
+    const d = data[id];
+    if (!d) return makeErrCard('crypto', info.name, info.ticker, 'Date indisponibile');
+    const mcap = d.usd_market_cap ? `Mcap: $${(d.usd_market_cap/1e9).toFixed(1)}B` : '';
+    return makeCard('crypto', info.name, info.ticker, d.usd, d.usd_24h_change, mcap);
+  }).join('');
+  document.getElementById('tab-crypto').innerHTML = html;
+}
+
+// ─── STOCKS — Finnhub ─────────────────────────────────────────────────────────
+const STOCKS = [
+  { symbol: 'NVDA', name: 'Nvidia', tag: 'stock' },
+  { symbol: 'MSFT', name: 'Microsoft', tag: 'stock' },
+  { symbol: 'AAPL', name: 'Apple', tag: 'stock' },
+  { symbol: 'PLTR', name: 'Palantir', tag: 'stock' },
+  { symbol: 'RTX',  name: 'RTX Corp', tag: 'defense' },
+  { symbol: 'XOM',  name: 'ExxonMobil', tag: 'energy' },
+  { symbol: 'NEE',  name: 'NextEra Energy', tag: 'energy' },
+  { symbol: 'RHM.DE', name: 'Rheinmetall', tag: 'defense' },
+];
+
+async function fetchStock(s) {
+  const url = `https://finnhub.io/api/v1/quote?symbol=${s.symbol}&token=${FINNHUB_KEY}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(res.status);
+  const d = await res.json();
+  return { ...s, price: d.c, change: d.dp, open: d.o, high: d.h, low: d.l };
+}
+
+async function fetchAllStocks() {
+  const results = await Promise.allSettled(STOCKS.map(fetchStock));
+  const html = results.map((r, i) => {
+    const s = STOCKS[i];
+    if (r.status === 'rejected' || !r.value.price) return makeErrCard(s.tag, s.name, s.symbol, 'API indisponibil');
+    const v = r.value;
+    const extra = v.high ? `H: $${fmtPrice(v.high)} · L: $${fmtPrice(v.low)}` : '';
+    return makeCard(s.tag, s.name, s.symbol, v.price, v.change, extra + '<br><span style="color:var(--muted)">⏱ Delay 15 min</span>');
+  }).join('');
+  document.getElementById('tab-stocks').innerHTML = html;
+}
+
+// ─── METALE — Stooq (proxy CORS) ─────────────────────────────────────────────
+// Folosim API-ul de schimb valutar + prețuri mărfuri via Yahoo Finance unofficial
+async function fetchMetalPrice(symbol, name, ticker, tag) {
+  try {
+    // folosim stooq via cors proxy
+    const url = `https://stooq.com/q/l/?s=${symbol}&f=sd2t2ohlcv&h&e=csv`;
+    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
+    const text = await res.text();
+    const lines = text.trim().split('\n');
+    if (lines.length < 2) throw new Error('No data');
+    const parts = lines[1].split(',');
+    const close = parseFloat(parts[5]);
+    const open = parseFloat(parts[3]);
+    const change = open ? ((close - open) / open) * 100 : null;
+    return makeCard(tag, name, ticker, close, change, '');
+  } catch {
+    return makeErrCard(tag, name, ticker, 'Date indisponibile');
+  }
+}
+
+async function fetchMetals() {
+  const assets = [
+    { symbol: 'xauusd', name: 'Aur (Gold)', ticker: 'XAU/USD', tag: 'metal' },
+    { symbol: 'xagusd', name: 'Argint (Silver)', ticker: 'XAG/USD', tag: 'metal' },
+    { symbol: 'ptusd',  name: 'Platină', ticker: 'PT/USD', tag: 'metal' },
+    { symbol: 'pdusd',  name: 'Paladiu', ticker: 'PD/USD', tag: 'metal' },
+    { symbol: 'hgusd',  name: 'Cupru', ticker: 'HG/USD', tag: 'commodity' },
+    { symbol: 'alusd',  name: 'Aluminiu', ticker: 'AL/USD', tag: 'commodity' },
+  ];
+  const cards = await Promise.all(assets.map(a => fetchMetalPrice(a.symbol, a.name, a.ticker, a.tag)));
+  document.getElementById('tab-metals').innerHTML = cards.join('');
+}
+
+async function fetchEnergy() {
+  const assets = [
+    { symbol: 'clf25.nyb', name: 'Petrol WTI', ticker: 'CL/USD', tag: 'energy' },
+    { symbol: 'cobz25.nyb', name: 'Petrol Brent', ticker: 'BZ/USD', tag: 'energy' },
+    { symbol: 'ngf25.nyb', name: 'Gaz Natural', ticker: 'NG/USD', tag: 'energy' },
+    { symbol: 'zwf25.cbt', name: 'Grâu (Wheat)', ticker: 'ZW/USD', tag: 'commodity' },
+    { symbol: 'zcf25.cbt', name: 'Porumb (Corn)', ticker: 'ZC/USD', tag: 'commodity' },
+    { symbol: 'sbf25.nys', name: 'Zahăr (Sugar)', ticker: 'SB/USD', tag: 'commodity' },
+  ];
+  const cards = await Promise.all(assets.map(a => fetchMetalPrice(a.symbol, a.name, a.ticker, a.tag)));
+  document.getElementById('tab-energy').innerHTML = cards.join('');
+}
+
+// ─── FX & INDICI — ExchangeRate + Finnhub ─────────────────────────────────────
+async function fetchFX() {
+  const fxAssets = [
+    { from: 'EUR', to: 'USD', name: 'Euro / Dolar', ticker: 'EUR/USD', tag: 'fx' },
+    { from: 'GBP', to: 'USD', name: 'Liră / Dolar', ticker: 'GBP/USD', tag: 'fx' },
+    { from: 'USD', to: 'RON', name: 'Dolar / Leu', ticker: 'USD/RON', tag: 'fx' },
+    { from: 'EUR', to: 'RON', name: 'Euro / Leu', ticker: 'EUR/RON', tag: 'fx' },
+  ];
+
+  const indices = [
+    { symbol: '^SPX', name: 'S&P 500', ticker: 'SPX', tag: 'index' },
+    { symbol: '^NDX', name: 'NASDAQ 100', ticker: 'NDX', tag: 'index' },
+    { symbol: '^DJI', name: 'Dow Jones', ticker: 'DJI', tag: 'index' },
+  ];
+
+  // FX via exchangerate-api (gratuit, fara key)
+  const fxCards = await Promise.all(fxAssets.map(async a => {
+    try {
+      const url = `https://api.exchangerate-api.com/v4/latest/${a.from}`;
+      const res = await fetch(url);
+      const d = await res.json();
+      const rate = d.rates[a.to];
+      return makeCard(a.tag, a.name, a.ticker, rate, null, 'Rată de schimb live');
+    } catch {
+      return makeErrCard(a.tag, a.name, a.ticker, 'Eroare');
+    }
+  }));
+
+  // Indici via Finnhub
+  const idxCards = await Promise.all(indices.map(async i => {
+    try {
+      const url = `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(i.symbol)}&token=${FINNHUB_KEY}`;
+      const res = await fetch(url);
+      const d = await res.json();
+      return makeCard(i.tag, i.name, i.ticker, d.c, d.dp, '⏱ Delay 15 min');
+    } catch {
+      return makeErrCard(i.tag, i.name, i.ticker, 'Eroare');
+    }
+  }));
+
+  document.getElementById('tab-fx').innerHTML = [...fxCards, ...idxCards].join('');
+}
+
+// ─── MAIN REFRESH ─────────────────────────────────────────────────────────────
+async function refreshAll() {
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true;
+  btn.textContent = '⟳ Se actualizează...';
+  setStatus('loading', 'Se încarcă datele live...');
+  document.getElementById('errorNote').style.display = 'none';
+
+  // Loading placeholders
+  document.getElementById('tab-crypto').innerHTML = Object.entries(CRYPTO_IDS).map(([id, i]) => makeLoadingCard('crypto', i.name, i.ticker)).join('');
+  document.getElementById('tab-stocks').innerHTML = STOCKS.map(s => makeLoadingCard(s.tag, s.name, s.symbol)).join('');
+
+  const errors = [];
+
+  try { const data = await fetchCrypto(); renderCrypto(data); }
+  catch (e) { errors.push('Crypto (CoinGecko)'); document.getElementById('tab-crypto').innerHTML = '<div style="color:var(--red);padding:20px;font-size:11px;">⚠ Nu s-au putut încărca datele crypto. Încearcă din nou.</div>'; }
+
+  try { await fetchAllStocks(); }
+  catch (e) { errors.push('Acțiuni (Finnhub)'); }
+
+  try { await fetchMetals(); }
+  catch (e) { errors.push('Metale & Mărfuri'); }
+
+  try { await fetchEnergy(); }
+  catch (e) { errors.push('Energie'); }
+
+  try { await fetchFX(); }
+  catch (e) { errors.push('FX & Indici'); }
+
+  const now = new Date();
+  document.getElementById('lastUpdate').textContent = `Actualizat: ${now.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' })}`;
+
+  if (errors.length === 0) {
+    setStatus('live', 'Date live active · Crypto în timp real · Acțiuni delay 15 min');
+  } else {
+    setStatus('error', `Erori la: ${errors.join(', ')}`);
+    const errEl = document.getElementById('errorNote');
+    errEl.textContent = `⚠ Unele date nu s-au putut încărca: ${errors.join(', ')}. Verifică cheia Finnhub sau încearcă din nou.`;
+    errEl.style.display = 'block';
+  }
+
+  btn.disabled = false;
+  btn.textContent = '⟳ Refresh Live';
+}
+
+window.addEventListener('load', refreshAll);
 </script>
 </body>
 </html>
